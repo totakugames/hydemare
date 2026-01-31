@@ -44,8 +44,9 @@ public class Enemy : MonoBehaviour
     private bool FacesLeft = false;
 
     private GameObject Player;
-
+    private SpriteRenderer Visual;
     private Rigidbody2D RB;
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -54,6 +55,14 @@ public class Enemy : MonoBehaviour
         AttackTimer = AttackFrequency;
         Player = GameObject.Find("Player");
         RB = GetComponent<Rigidbody2D>();
+        GameObject visualObj = transform.GetChild(0).gameObject;
+        Visual = visualObj.GetComponent<SpriteRenderer>();
+    }
+
+    void Update()
+    {
+        Debug.Log(FacesLeft);
+        Visual.flipX = !FacesLeft;
     }
 
     // Update is called once per frame
@@ -67,7 +76,6 @@ public class Enemy : MonoBehaviour
         if (SeesPlayer())
         {
             Mode = EState.Hunt;
-            Debug.Log("Sees player");
         }
 
         switch(Mode) 
@@ -79,7 +87,6 @@ public class Enemy : MonoBehaviour
                     IdleTimer = NewIdleTime();
                     GenerateIdleTarget();
                     Mode = EState.MoveTo;
-                    Debug.Log("Generating new idle target");
                 }    
                 break;
             case EState.MoveTo:
@@ -88,18 +95,14 @@ public class Enemy : MonoBehaviour
                 else
                     Move();
 
-                Debug.Log("Moving");
-
                 Debug.Log(DistanceTo(MoveToTarget));
                 if (DistanceTo(MoveToTarget) < 0.25f) 
                 {
                     Mode = EState.Idle;
-                    Debug.Log("Reached move target");
                     RB.linearVelocity = new Vector2(0, 0);
                 }
                 break;
             case EState.Hunt:
-                Debug.Log("Hunting");
                 if (SeesPlayerBidir())
                 {
                     MoveToTarget = Player.transform.position;
