@@ -577,9 +577,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50edcd1e71f270243ab0aba1b52ea32c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
-  swanWorldMusic: {fileID: 8300000, guid: 41c223bdb176bae4083dcb32faa68758, type: 3}
-  ravenWorldMusic: {fileID: 8300000, guid: 8525e6fb30437a347859585b7932d53b, type: 3}
-  mainMenuMusic: {fileID: 8300000, guid: 7f7603b99fb4c1d438e653e4a26a680c, type: 3}
+  swanWorldMusic: {fileID: 0}
+  ravenWorldMusic: {fileID: 0}
+  mainMenuMusic: {fileID: 0}
   swooshSound: {fileID: 0}
 --- !u!4 &538754076
 Transform:
@@ -723,7 +723,7 @@ MonoBehaviour:
   PlayerMaxFeathers: 10
   PlayerAcceleration: 6.5
   PlayerMaxSpeed: 2.5
-  JumpMultiplier: 1
+  JumpMultiplier: 5
 --- !u!4 &810317967
 Transform:
   m_ObjectHideFlags: 0
@@ -753,7 +753,7 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDamping: 20
+  m_LinearDamping: 3
   m_AngularDamping: 0.05
   m_GravityScale: 1
   m_Material: {fileID: 0}
@@ -958,7 +958,8 @@ MonoBehaviour:
   MaxDistanceY: 2
   MaxDistanceX: 3
   CamSpeedFactor: 1
-  VerticalOffset: 0
+  VerticalOffset: 0.2
+  Background: {fileID: 327956186}
 --- !u!1 &1339936682
 GameObject:
   m_ObjectHideFlags: 0

@@ -34,7 +34,7 @@ public class CamControl : MonoBehaviour
         MainCam = GetComponent<Camera>();
         
         Bounds bgBounds = BackgroundSprite.sprite.bounds;
-        float camWidthHalf = (MainCam.ScreenToWorldPoint(0, 0).x - MainCam.ScreenToWorldPoint(1920, 0).x) / 2f;
+        float camWidthHalf = (MainCam.ScreenToWorldPoint(new Vector3(MainCam.pixelWidth, 0, 0)).x - MainCam.ScreenToWorldPoint(new Vector3(0, 0, 0)).x) / 2;
         CamPosMinX = camWidthHalf + bgBounds.center.x - bgBounds.extents.x;
         CamPosMaxX = bgBounds.center.x + bgBounds.extents.x - camWidthHalf;
     }
@@ -59,7 +59,7 @@ public class CamControl : MonoBehaviour
             newX += moveX;
         }        
 
-        newX = Mathf.Clamp(newX, CampPosMinX, CamPosMaxX);
+        newX = Mathf.Clamp(newX, CamPosMinX, CamPosMaxX);
         transform.position = new Vector3(newX, newY + VerticalOffset, transform.position.z);
     }
 }
