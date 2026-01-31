@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 public class EnemySound : MonoBehaviour
 {
@@ -41,30 +42,57 @@ public class EnemySound : MonoBehaviour
     }
 
     // Function called by animation event
+
     public void PlayEnemyWalkSound()
     {
-        Debug.Log("PlayFlapSound called! PlayerNearby: " + isPlayerNearby);
+        Debug.Log("PlayEnemyWalkSound called! PlayerNearby: " + isPlayerNearby);
 
         if (isPlayerNearby)
         {
             audioSource.PlayOneShot(enemyWalkSound);
-            Debug.Log("Playing sound!");
-        }
-    }
-/*
 
-    public void PlayEnemyWalkSound()
-    {
-        Debug.Log("=== FORCE PLAY TEST ===");
-        if (enemyWalkSound != null && audioSource != null)
-        {
-            audioSource.PlayOneShot(enemyWalkSound, 1.0f); // Volume auf 1
-            Debug.Log("Sound should play NOW!");
-        }
-        else
-        {
-            Debug.Log("PROBLEM: flapSound null? " + (enemyWalkSound == null) + " audioSource null? " + (audioSource == null));
+            //float soundLength = enemyWalkSound.length;
+            //float fadeStartTime = soundLength - 0.1f;
+
+            /*if (fadeStartTime > 0)
+            {
+                StartCoroutine(FadeOutAfterDelay(fadeStartTime, 0.1f));
+            }*/
         }
     }
-    */
+
+    IEnumerator FadeOutAfterDelay(float delay, float fadeDuration)
+    {
+        yield return new WaitForSeconds(delay);
+
+        float startVolume = audioSource.volume;
+        float elapsed = 0f;
+
+        while (elapsed < fadeDuration)
+        {
+            elapsed += Time.deltaTime;
+            audioSource.volume = Mathf.Lerp(startVolume, 0, elapsed / fadeDuration);
+            yield return null;
+        }
+
+        audioSource.Stop();
+        audioSource.volume = startVolume;
+    }
+
+    /*
+
+        public void PlayEnemyWalkSound()
+        {
+            Debug.Log("=== FORCE PLAY TEST ===");
+            if (enemyWalkSound != null && audioSource != null)
+            {
+                audioSource.PlayOneShot(enemyWalkSound, 1.0f); // Volume auf 1
+                Debug.Log("Sound should play NOW!");
+            }
+            else
+            {
+                Debug.Log("PROBLEM: flapSound null? " + (enemyWalkSound == null) + " audioSource null? " + (audioSource == null));
+            }
+        }
+        */
 }
