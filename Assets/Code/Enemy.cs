@@ -61,7 +61,6 @@ public class Enemy : MonoBehaviour
 
     void Update()
     {
-        Debug.Log(FacesLeft);
         Visual.flipX = !FacesLeft;
     }
 
@@ -75,6 +74,7 @@ public class Enemy : MonoBehaviour
 
         if (SeesPlayer())
         {
+            Debug.Log("Seen");
             Mode = EState.Hunt;
         }
 
@@ -96,13 +96,14 @@ public class Enemy : MonoBehaviour
                     Move();
 
                 Debug.Log(DistanceTo(MoveToTarget));
-                if (DistanceTo(MoveToTarget) < 0.25f) 
+                if (DistanceTo(MoveToTarget) < 0.5f) 
                 {
                     Mode = EState.Idle;
                     RB.linearVelocity = new Vector2(0, 0);
                 }
                 break;
             case EState.Hunt:
+                Debug.Log("IsHunting");
                 if (SeesPlayerBidir())
                 {
                     MoveToTarget = Player.transform.position;
@@ -122,6 +123,7 @@ public class Enemy : MonoBehaviour
                 {
                     Vector3 halfway = IdleBoxLimiterRight.transform.position - IdleBoxLimiterLeft.transform.position;
                     MoveToTarget = IdleBoxLimiterLeft.transform.position + halfway;
+                    MoveToTarget.y = transform.position.y;
                     Mode = EState.MoveTo;
 
                     if (CanFly)
