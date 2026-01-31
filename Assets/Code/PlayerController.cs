@@ -66,16 +66,16 @@ public class PlayerController : MonoBehaviour
 
     void ProcessPlayerMovement()
     {
-        float impulseX = 0;
+        float velX = RB.linearVelocity.x;
         if (Mathf.Abs(RB.linearVelocity.x) < PlayerMaxSpeed) 
         {
             if (MoveLeft.IsPressed()) 
             {
-                impulseX -= PlayerAcceleration;
+                velX -= PlayerAcceleration;
             }
             else if (MoveRight.IsPressed()) 
             {
-                impulseX += PlayerAcceleration;
+                velX += PlayerAcceleration;
             }
         }
 
@@ -88,7 +88,8 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        RB.AddForce(new Vector2(impulseX, impulseY), ForceMode2D.Impulse);
+        RB.AddForce(new Vector2(0, impulseY), ForceMode2D.Impulse);
+        RB.linearVelocity = new Vector2(velX, RB.linearVelocity.y);
     }
 
     public void DealDamage(float damage) 

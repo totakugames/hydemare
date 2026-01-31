@@ -10,6 +10,8 @@ public class CamControl : MonoBehaviour
     private int MaxDistanceX = 300;
     [SerializeField]
     private float CamSpeedFactor = 1.0f;
+    [SerializeField]
+    private float VerticalOffset = 0;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -39,6 +41,6 @@ public class CamControl : MonoBehaviour
             newX += moveX;
         }        
 
-        transform.position = new Vector3(newX, newY, transform.position.z);
+        transform.position = new Vector3(newX, newY + VerticalOffset, transform.position.z);
     }
 }
