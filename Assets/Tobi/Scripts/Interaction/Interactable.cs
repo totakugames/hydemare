@@ -16,9 +16,7 @@ public abstract class Interactable : MonoBehaviour
     public bool RequiresHold => requiresHold;
     public float HoldDuration => holdDuration;
 
-    //manu how do u make it? player player?
-    /*
-    public void Interact(PlayerInteraction player)
+    public void Interact(PlayerController player)
     {
         OnInteractionStarted?.Invoke();
 
@@ -29,13 +27,12 @@ public abstract class Interactable : MonoBehaviour
         }
     }
 
-    public virtual bool CanInteract(PlayerInteraction player) => true;
+    public virtual bool CanInteract(PlayerController player) => true;
 
-    protected abstract void PerformInteraction(PlayerInteraction player);
+    protected abstract void PerformInteraction(PlayerController player);
 
     public virtual void CancelInteraction()
     {
         OnInteractionCancelled?.Invoke();
     }
-    */
 }

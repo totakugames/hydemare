@@ -8,6 +8,7 @@ Shader "Custom/SanityVignette"
         _VignetteIntensity ("Vignette Intensity", Range(0, 1)) = 0.5
         _VignetteRadius ("Vignette Radius", Range(0, 1)) = 0.5
         _VignetteSoftness ("Vignette Softness", Range(0.01, 1)) = 0.3
+        _VignetteCenter ("Vignette Center", Vector) = (0.5, 0.5, 0, 0)
         
         [Header(Rays)]
         _RayCount ("Ray Count", Range(8, 128)) = 48
@@ -54,6 +55,7 @@ Shader "Custom/SanityVignette"
             float _VignetteIntensity;
             float _VignetteRadius;
             float _VignetteSoftness;
+            float4 _VignetteCenter;
             
             float _RayCount;
             float _RayIntensity;
@@ -76,7 +78,8 @@ Shader "Custom/SanityVignette"
             
             float GetRays(float2 uv, float time)
             {
-                float2 centeredUV = uv - 0.5;
+                float2 center = _VignetteCenter.xy;
+                float2 centeredUV = uv - center;
                 float angle = atan2(centeredUV.y, centeredUV.x);
                 float dist = length(centeredUV);
                 
@@ -114,7 +117,8 @@ Shader "Custom/SanityVignette"
             
             float GetVignette(float2 uv)
             {
-                float2 centeredUV = uv - 0.5;
+                float2 center = _VignetteCenter.xy;
+                float2 centeredUV = uv - center;
                 float dist = length(centeredUV) * 2.0;
                 
                 float vignette = smoothstep(_VignetteRadius, _VignetteRadius + _VignetteSoftness, dist);

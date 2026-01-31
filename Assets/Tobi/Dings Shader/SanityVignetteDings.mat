@@ -42,23 +42,24 @@ Material:
     m_Ints: []
     m_Floats:
     - _EnableExternalAlpha: 0
-    - _PulseAmount: 0.048
-    - _PulseSpeed: 2.27
-    - _RayCount: 115
-    - _RayIntensity: 0.317
-    - _RayLength: 0.072
+    - _PulseAmount: 0.266
+    - _PulseSpeed: 0.61
+    - _RayCount: 103
+    - _RayIntensity: 0.41
+    - _RayLength: 0.113
     - _RaySharpness: 1
     - _RayVariation: 0.281
-    - _RayWidth: 1.08
-    - _VignetteIntensity: 0.641
-    - _VignetteRadius: 0.249
-    - _VignetteSoftness: 0.674
-    - _WaveAmplitude: 0.074
+    - _RayWidth: 0.98
+    - _VignetteIntensity: 0.42
+    - _VignetteRadius: 0.47
+    - _VignetteSoftness: 0.35
+    - _WaveAmplitude: 0
     - _WaveFrequency: 12.6
     - _WaveSpeed: 3.09
     - _ZWrite: 0
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
+    - _VignetteCenter: {r: 0.5, g: 0.5, b: 0, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1

@@ -20,15 +20,14 @@ public class PickupInteractable : Interactable
 
         promptText = "[E] Pick Up";
     }
-    /*
-    public override bool CanInteract(PlayerInteraction player)
+    public override bool CanInteract(PlayerController player)
     {
         return itemData != null;
     }
 
-    protected override void PerformInteraction(PlayerInteraction player)
+    protected override void PerformInteraction(PlayerController player)
     {
-        player.Inventory.AddItem(this);
+        //TODO :) Add item to player's inventory
     }
 
     public void Drop(Vector2 position)
@@ -46,6 +45,5 @@ public class PickupInteractable : Interactable
 
         gameObject.SetActive(visible);
     }
-    */
 }
 
