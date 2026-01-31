@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 580fb06b4cca29e4db51aff67cdcd3cd, type: 3}
   m_Name: SanityVignetteFeature
   m_EditorClassIdentifier: Assembly-CSharp::SanityVignetteFeature
-  m_Active: 1
+  m_Active: 0
   settings:
     renderPassEvent: 600
     material: {fileID: 2100000, guid: ddd109f88710b10469cebbf786317285, type: 2}
