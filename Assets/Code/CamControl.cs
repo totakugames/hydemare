@@ -12,13 +12,15 @@ public class CamControl : MonoBehaviour
     private float CamSpeedFactor = 1.0f;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    /*void Start()
+    void Start()
     {
-        transform.position = Player.transform.position;
+        transform.position = new Vector3(Player.transform.position.x,
+                                        Player.transform.position.y,
+                                        transform.position.z);
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         float dY = Player.transform.position.y - transform.position.y;
         float dX = Player.transform.position.x - transform.position.x;
@@ -38,5 +40,5 @@ public class CamControl : MonoBehaviour
         }        
 
         transform.position = new Vector3(newX, newY, transform.position.z);
-    }*/
+    }
 }
