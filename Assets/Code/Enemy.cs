@@ -44,8 +44,9 @@ public class Enemy : MonoBehaviour
     private bool FacesLeft = false;
 
     private GameObject Player;
-
+    private SpriteRenderer Visual;
     private Rigidbody2D RB;
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -54,6 +55,13 @@ public class Enemy : MonoBehaviour
         AttackTimer = AttackFrequency;
         Player = GameObject.Find("Player");
         RB = GetComponent<Rigidbody2D>();
+        GameObject visualObj = transform.GetChild(0).gameObject;
+        Visual = visualObj.GetComponent<SpriteRenderer>();
+    }
+
+    void Update()
+    {
+        Visual.flipX = !FacesLeft;
     }
 
     // Update is called once per frame
@@ -66,8 +74,8 @@ public class Enemy : MonoBehaviour
 
         if (SeesPlayer())
         {
+            Debug.Log("Seen");
             Mode = EState.Hunt;
-            Debug.Log("Sees player");
         }
 
         switch(Mode) 
@@ -79,7 +87,6 @@ public class Enemy : MonoBehaviour
                     IdleTimer = NewIdleTime();
                     GenerateIdleTarget();
                     Mode = EState.MoveTo;
-                    Debug.Log("Generating new idle target");
                 }    
                 break;
             case EState.MoveTo:
@@ -88,18 +95,15 @@ public class Enemy : MonoBehaviour
                 else
                     Move();
 
-                Debug.Log("Moving");
-
                 Debug.Log(DistanceTo(MoveToTarget));
-                if (DistanceTo(MoveToTarget) < 0.25f) 
+                if (DistanceTo(MoveToTarget) < 0.5f) 
                 {
                     Mode = EState.Idle;
-                    Debug.Log("Reached move target");
                     RB.linearVelocity = new Vector2(0, 0);
                 }
                 break;
             case EState.Hunt:
-                Debug.Log("Hunting");
+                Debug.Log("IsHunting");
                 if (SeesPlayerBidir())
                 {
                     MoveToTarget = Player.transform.position;
@@ -119,6 +123,7 @@ public class Enemy : MonoBehaviour
                 {
                     Vector3 halfway = IdleBoxLimiterRight.transform.position - IdleBoxLimiterLeft.transform.position;
                     MoveToTarget = IdleBoxLimiterLeft.transform.position + halfway;
+                    MoveToTarget.y = transform.position.y;
                     Mode = EState.MoveTo;
 
                     if (CanFly)
