@@ -14,7 +14,6 @@ public class PlayerController : MonoBehaviour
     private InputAction MoveRight;
     private InputAction SwitchMask;
     private InputAction Interact;
-    private InputAction TakeElevator;   // TakeElevator can also be stairs or whatever changes the vertical level
     private InputAction Jump;
 
     enum EPlayerState
@@ -48,10 +47,6 @@ public class PlayerController : MonoBehaviour
                 {
                     
                 }
-                else if (TakeElevator.IsPressed())
-                {
-
-                }
                 break;
             case EPlayerState.SwitchingMask:
                 break;
@@ -66,7 +61,6 @@ public class PlayerController : MonoBehaviour
         MoveRight = InputSystem.actions.FindAction("MoveRight");
         SwitchMask = InputSystem.actions.FindAction("SwitchMask");
         Interact = InputSystem.actions.FindAction("Interact");
-        TakeElevator = InputSystem.actions.FindAction("TakeElevator");
         Jump = InputSystem.actions.FindAction("Jump");
     }
 
@@ -95,5 +89,10 @@ public class PlayerController : MonoBehaviour
         }
 
         RB.AddForce(new Vector2(impulseX, impulseY), ForceMode2D.Impulse);
+    }
+
+    public void DealDamage(float damage) 
+    {
+        
     }
 }
