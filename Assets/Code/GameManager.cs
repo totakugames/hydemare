@@ -65,9 +65,25 @@ public class GameManager : MonoBehaviour
         sfxSource.PlayOneShot(clip);
     }
 
-    public void SwitchWorld(AudioClip newWorldMusic)
+    public void SwitchWorld(bool toDark)
     {
         PlaySFX(swooshSound);
-        PlayMusic(newWorldMusic);
+        
+        if (toDark) 
+        {
+            PlayMusic(ravenWorldMusic);
+        }
+        else 
+        {        
+            PlayMusic(swanWorldMusic);
+        }
+
+        GameObject[] gameObjects = GameObject.FindGameObjectsWithTag("Raven");
+        foreach (GameObject obj in gameObjects)
+        {
+            Renderer objRender = obj.GetComponent<Renderer>();
+            objRender.enabled = toDark;
+        }
+        
     }
 }

@@ -161,6 +161,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 130152649613538624, guid: 33c77209ca8be0f42a541559c8dd93f7, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 130152649613538624, guid: 33c77209ca8be0f42a541559c8dd93f7, type: 3}
       propertyPath: IdleBoxLimiterLeft
       value: 
       objectReference: {fileID: 270814501}
@@ -183,6 +187,10 @@ PrefabInstance:
     - target: {fileID: 3003513327783743349, guid: 33c77209ca8be0f42a541559c8dd93f7, type: 3}
       propertyPath: m_Offset.y
       value: 3.082251
+      objectReference: {fileID: 0}
+    - target: {fileID: 3891144652196145540, guid: 33c77209ca8be0f42a541559c8dd93f7, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5096859956421923299, guid: 33c77209ca8be0f42a541559c8dd93f7, type: 3}
       propertyPath: m_Size.x
@@ -603,6 +611,10 @@ PrefabInstance:
       value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 3158814371153963585, guid: f9cf2b1d4b154ee44a224c877f64d707, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3158814371153963585, guid: f9cf2b1d4b154ee44a224c877f64d707, type: 3}
       propertyPath: IdleBoxLimiterLeft
       value: 
       objectReference: {fileID: 2034752196}
@@ -613,6 +625,10 @@ PrefabInstance:
     - target: {fileID: 4928782201523231141, guid: f9cf2b1d4b154ee44a224c877f64d707, type: 3}
       propertyPath: m_Name
       value: FlyingEnemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 5420507314506438259, guid: f9cf2b1d4b154ee44a224c877f64d707, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5733322851474371728, guid: f9cf2b1d4b154ee44a224c877f64d707, type: 3}
       propertyPath: m_Size.x
@@ -721,6 +737,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2004868012804949752, guid: 63174eb1622fd500aafc6cee6d547151, type: 3}
       propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3201092656659499486, guid: 63174eb1622fd500aafc6cee6d547151, type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6457738510555264329, guid: 63174eb1622fd500aafc6cee6d547151, type: 3}
@@ -900,6 +920,7 @@ MonoBehaviour:
   PlayerAcceleration: 6.5
   PlayerMaxSpeed: 2.5
   JumpMultiplier: 7
+  GM: {fileID: 538754075}
 --- !u!4 &810317967
 Transform:
   m_ObjectHideFlags: 0
@@ -1023,7 +1044,7 @@ GameObject:
   - component: {fileID: 1102190563}
   m_Layer: 0
   m_Name: BackgroundVisualDark
-  m_TagString: dark
+  m_TagString: Raven
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1350,8 +1371,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 127f337eefc508a4ab7fc9b9192761a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WorldSwitchDummy
-  swanMusic: {fileID: 8300000, guid: 41c223bdb176bae4083dcb32faa68758, type: 3}
-  ravenMusic: {fileID: 8300000, guid: 8525e6fb30437a347859585b7932d53b, type: 3}
 --- !u!4 &1864646175
 Transform:
   m_ObjectHideFlags: 0

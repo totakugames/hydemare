@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 9012953167412499618}
   m_Layer: 0
   m_Name: Platform
-  m_TagString: dark
+  m_TagString: Raven
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

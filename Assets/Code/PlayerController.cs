@@ -45,6 +45,9 @@ public class PlayerController : MonoBehaviour
 
     private Rigidbody2D RB;
 
+    [SerializeField]
+    private GameManager GM;
+
     void Start()
     {
         RB = GetComponent<Rigidbody2D>();
@@ -92,12 +95,7 @@ public class PlayerController : MonoBehaviour
                 MaskTimer -= Time.deltaTime;
                 if (MaskTimer < 0)
                 {
-                    GameObject[] gameObjects = GameObject.FindGameObjectsWithTag("dark");
-                    foreach (GameObject obj in gameObjects)
-                    {
-                        Renderer objRender = obj.GetComponent<Renderer>();
-                        objRender.enabled = isNightmare;
-                    }
+                    GM.SwitchWorld(isNightmare);
                     PlayerState = EPlayerState.Moving;
                 }
                 break;

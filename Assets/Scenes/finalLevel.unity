@@ -423,7 +423,7 @@ Transform:
   m_GameObject: {fileID: 1351333593}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -7.28, y: -0.05, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -442,6 +442,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 212afe251606223f1b200f28aab515af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+  PlayerMaxSanity: 100
+  PlayerDrainSanity: 1
+  PlayerMaxFeathers: 10
   PlayerAcceleration: 0.3
   PlayerMaxSpeed: 2.5
   JumpMultiplier: 7
@@ -521,7 +524,7 @@ GameObject:
   - component: {fileID: 1647506688}
   - component: {fileID: 1647506687}
   m_Layer: 0
-  m_Name: Body
+  m_Name: PlayerVisual
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -709,6 +712,8 @@ MonoBehaviour:
   MaxDistanceY: 1
   MaxDistanceX: 1
   CamSpeedFactor: 1
+  VerticalOffset: 0
+  Background: {fileID: 0}
 --- !u!114 &2075832577
 MonoBehaviour:
   m_ObjectHideFlags: 0
