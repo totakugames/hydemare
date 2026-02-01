@@ -27,6 +27,11 @@ public class PlayerAnimator : MonoBehaviour
     public void SetWalking(bool walking)
     {
         animator.SetBool(IS_WALKING, walking);
+
+        if (!walking)
+        {
+            GetComponent<PlayerSound>()?.StopWalkSound();
+        }
     }
 
     public void SetJumping(bool jumping)
