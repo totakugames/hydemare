@@ -285,7 +285,7 @@ public class PlayerController : MonoBehaviour
         {
             case Collect.Climb:
                 {
-                    // todo
+                    ClimbStairs(interactable.gameObject.GetComponent<Collectable>().escalatorTargetPosition);
                     break;
                 }
             case Collect.Carry:
@@ -319,5 +319,11 @@ public class PlayerController : MonoBehaviour
             inventory = null;
             carrying = false;
         }
+    }
+
+    private void ClimbStairs(Vector3 targetPosition) {
+        transform.position = targetPosition;
+
+        // wip
     }
 }

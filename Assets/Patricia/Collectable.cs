@@ -9,6 +9,9 @@ public class Collectable : MonoBehaviour
 
     [SerializeField]    
     public float sanityGain = 0f;
+
+    [SerializeField]
+    public Vector3 escalatorTargetPosition;
 }
 
 public enum Collect 
