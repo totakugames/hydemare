@@ -57,6 +57,10 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private GameManager GM;
 
+    [SerializeField]
+    private GameObject ES;
+    private bool EndingScreenShown = false;
+
     void Start()
     {
         RB = GetComponent<Rigidbody2D>();
@@ -71,16 +75,23 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        if (playerSanity.currentSanity <= 0)
-        {
-            // todo
-            Debug.Log("Game Over");
+        if (!EndingScreenShown) {
+            if (playerSanity.currentSanity <= 0)
+            {
+                ES.SetActive(true);
+                ES.GetComponent<EndingUI>().SetEnding(false);
+                Debug.Log("Game Over");
+                EndingScreenShown = true;
+            }
+            if (playerFeathers.currentFeathers >= playerFeathers.maxFeathers)
+            {
+                ES.SetActive(true);
+                ES.GetComponent<EndingUI>().SetEnding(true);
+                Debug.Log("You Won");
+                EndingScreenShown = true;
+            }
         }
-        if (playerFeathers.currentFeathers >= playerFeathers.maxFeathers)
-        {
-            // todo 
-            Debug.Log("You Won");
-        }
+        
 
         if (isRavenWorld)
         {

@@ -14,6 +14,6 @@ public class FloatingPlatform : MonoBehaviour
     {
         float inverseSpeed = 1 / HoverSpeed;
         float yOffset = Mathf.Sin(Time.realtimeSinceStartup * inverseSpeed) * HoverAmplitude;
-        Platform.transform.position = new Vector3(0, yOffset, 0);
+        Platform.transform.localPosition = new Vector3(0, yOffset, 0);;        
     }
 }
