@@ -29,7 +29,7 @@ public class PlayerController : MonoBehaviour
     private InputAction Interact;
     private InputAction Jump;
 
-    private bool isNightmare = false;
+    private bool isRavenWorld = false;
 
     private bool canInteract = false;
     private Collider2D interactable;
@@ -52,6 +52,7 @@ public class PlayerController : MonoBehaviour
     private EPlayerState PlayerState = EPlayerState.Moving;
 
     private Rigidbody2D RB;
+    private PlayerAnimator playerAnimator;
 
     [SerializeField]
     private GameManager GM;
@@ -59,6 +60,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         RB = GetComponent<Rigidbody2D>();
+        playerAnimator = GetComponentInChildren<PlayerAnimator>();
         SetupInputSystem();
 
         playerSanity = new Sanity(PlayerMaxSanity, PlayerDrainSanity);
@@ -67,41 +69,50 @@ public class PlayerController : MonoBehaviour
         MaskTimer = MaskingTime;
     }
 
-    void Update() {
-        if(playerSanity.currentSanity <= 0){
+    void Update()
+    {
+        if (playerSanity.currentSanity <= 0)
+        {
             // todo
             Debug.Log("Game Over");
         }
-        if(playerFeathers.currentFeathers >= playerFeathers.maxFeathers){
+        if (playerFeathers.currentFeathers >= playerFeathers.maxFeathers)
+        {
             // todo 
             Debug.Log("You Won");
         }
 
-        if(isNightmare) {
+        if (isRavenWorld)
+        {
             playerSanity.DrainSanity(PlayerDrainSanity);
         }
+
+        UpdateAnimations();
     }
 
     void FixedUpdate()
     {
         PickedUpTimer -= Time.deltaTime;
 
-        switch(PlayerState) 
+        switch (PlayerState)
         {
             case EPlayerState.Moving:
                 ProcessPlayerMovement();
-                if (SwitchMask.IsPressed()) 
+                if (SwitchMask.IsPressed())
                 {
-                    isNightmare = !isNightmare;
+                    isRavenWorld = !isRavenWorld;
                     MaskTimer = MaskingTime;
                     PlayerState = EPlayerState.SwitchingMask;
                 }
                 else if (Interact.IsPressed())
                 {
-                    if(canInteract &&  PickedUpTimer < 0) {
+                    if (canInteract && PickedUpTimer < 0)
+                    {
                         PickedUpTimer = PickedUpTimeout;
-                        InteractWith(); // todo interact between two items (patricia)
-                    } else if(carrying && PickedUpTimer < 0) {
+                        InteractWith();
+                    }
+                    else if (carrying && PickedUpTimer < 0)
+                    {
                         PickedUpTimer = PickedUpTimeout;
                         DropItem();
                     }
@@ -111,7 +122,8 @@ public class PlayerController : MonoBehaviour
                 MaskTimer -= Time.deltaTime;
                 if (MaskTimer < 0)
                 {
-                    GM.SwitchWorld(isNightmare);
+                    GM.SwitchWorld(isRavenWorld);
+                    playerAnimator.SwitchWorld(!isRavenWorld);
                     PlayerState = EPlayerState.Moving;
                 }
                 break;
@@ -120,8 +132,32 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    void ChangeWorld() {
-        isNightmare = !isNightmare;
+    void UpdateAnimations()
+    {
+        if (playerAnimator == null) return;
+
+        bool isMoving = MoveLeft.IsPressed() || MoveRight.IsPressed();
+        playerAnimator.SetWalking(isMoving);
+
+        if (MoveLeft.IsPressed())
+        {
+            playerAnimator.transform.localScale = new Vector3(-0.05f, 0.05f, 0.05f);
+        }
+        else if (MoveRight.IsPressed())
+        {
+            playerAnimator.transform.localScale = new Vector3(0.05f, 0.05f, 0.05f);
+        }
+
+        bool isJumping = Jump.IsPressed() && Mathf.Abs(RB.linearVelocity.y) < 0.01f;
+        playerAnimator.SetJumping(isJumping);
+
+        bool isGrounded = Mathf.Abs(RB.linearVelocity.y) < 0.01f;
+        playerAnimator.SetGrounded(isGrounded);
+    }
+
+    void ChangeWorld()
+    {
+        isRavenWorld = !isRavenWorld;
 
         Debug.Log("World Changed");
     }
@@ -138,20 +174,20 @@ public class PlayerController : MonoBehaviour
     void ProcessPlayerMovement()
     {
         float velX = RB.linearVelocity.x;
-        if (Mathf.Abs(RB.linearVelocity.x) < PlayerMaxSpeed) 
+        if (Mathf.Abs(RB.linearVelocity.x) < PlayerMaxSpeed)
         {
-            if (MoveLeft.IsPressed()) 
+            if (MoveLeft.IsPressed())
             {
                 velX -= PlayerAcceleration;
             }
-            else if (MoveRight.IsPressed()) 
+            else if (MoveRight.IsPressed())
             {
                 velX += PlayerAcceleration;
             }
         }
 
         float impulseY = 0;
-        if (Jump.IsPressed()) 
+        if (Jump.IsPressed())
         {
             if (RB.linearVelocity.y == 0)
             {
@@ -163,16 +199,19 @@ public class PlayerController : MonoBehaviour
         RB.linearVelocity = new Vector2(velX, RB.linearVelocity.y);
     }
 
-    public void GainHealth(float gain) {
+    public void GainHealth(float gain)
+    {
         playerFeathers.CollectFeather();
         playerSanity.GainSanity(gain);
     }
 
-    public void DealDamage(float damage) {
+    public void DealDamage(float damage)
+    {
         playerSanity.LoseSanity(damage);
     }
 
-    public void CarryItem() {
+    public void CarryItem()
+    {
         inventory = new CollectableSnapshot(interactable.gameObject);
         canInteract = false;
         carrying = true;
@@ -180,10 +219,11 @@ public class PlayerController : MonoBehaviour
         Debug.Log(inventory.collectable.objectName + " carried!");
     }
 
-    public void DropItem() {
+    public void DropItem()
+    {
         GameObject spawn = Instantiate(
             respawnPrefab,
-            transform.position, 
+            transform.position,
             inventory.rotation
         );
 
@@ -220,26 +260,31 @@ public class PlayerController : MonoBehaviour
         Debug.Log("Available Item: None");
     }
 
-    private void InteractWith() {
-            switch(interactable.gameObject.GetComponent<Collectable>().objectType)
-            {
-                case Collect.Climb: {   
+    private void InteractWith()
+    {
+        switch (interactable.gameObject.GetComponent<Collectable>().objectType)
+        {
+            case Collect.Climb:
+                {
                     // todo
                     break;
                 }
-                case Collect.Carry: {
-                    if(!carrying) {
+            case Collect.Carry:
+                {
+                    if (!carrying)
+                    {
                         CarryItem();
-                    }   
-                    break;    
+                    }
+                    break;
                 }
-                case Collect.Feather: {
+            case Collect.Feather:
+                {
                     GainHealth(interactable.gameObject.GetComponent<Collectable>().sanityGain);
                     break;
                 }
-                default: break;
-            }
-            Destroy(interactable.gameObject);
-            interactable = null;
+            default: break;
+        }
+        Destroy(interactable.gameObject);
+        interactable = null;
     }
 }

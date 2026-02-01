@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 06bd46b75ea68c04893d7fe5818d5026
+guid: 4bdddaa7ad25d784ca66bf2fb1a54f76
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 8130102948208191500
-    second: Raven_JumpCycle_1_0
+      213: 5725325171790580352
+    second: Raven_JumpCycle_3_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Raven_JumpCycle_1_0
+      name: Raven_JumpCycle_3_0
       rect:
         serializedVersion: 2
-        x: 1883
-        y: 770
-        width: 1498
-        height: 2730
+        x: 1584
+        y: 1136
+        width: 1953
+        height: 2903
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: c082e476e8de3d070800000000000000
-      internalID: 8130102948208191500
+      spriteID: 08a0e20e8e0747f40800000000000000
+      internalID: 5725325171790580352
       vertices: []
       indices: 
       edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Raven_JumpCycle_1_0: 8130102948208191500
+      Raven_JumpCycle_3_0: 5725325171790580352
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
