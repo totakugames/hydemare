@@ -7,6 +7,6 @@ interface IObjectExecution
 
 public class ObjectExecution : MonoBehaviour, IObjectExecution 
 {
-  public void execute() {}
+  public virtual void execute() {}
 }
 
