@@ -4,6 +4,9 @@ using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour
 {
     [SerializeField]
+    private GameObject respawnPrefab;
+
+    [SerializeField]
     private float PlayerMaxSanity = 100f;
     [SerializeField]
     private float PlayerDrainSanity = 1f;
@@ -26,11 +29,16 @@ public class PlayerController : MonoBehaviour
     private InputAction Interact;
     private InputAction Jump;
 
-    private bool isNightmare = false;
+    private bool isRavenWorld = false;
 
     private bool canInteract = false;
-    private Collectable interactable;
-    private Collectable inventory;
+    private Collider2D interactable;
+
+    private bool carrying = false;
+    private CollectableSnapshot inventory;
+
+    private float PickedUpTimeout = 0.5f;
+    private float PickedUpTimer = 0;
 
     private float MaskingTime = 1.0f;
     private float MaskTimer;
@@ -44,6 +52,7 @@ public class PlayerController : MonoBehaviour
     private EPlayerState PlayerState = EPlayerState.Moving;
 
     private Rigidbody2D RB;
+    private PlayerAnimator playerAnimator;
 
     [SerializeField]
     private GameManager GM;
@@ -51,6 +60,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         RB = GetComponent<Rigidbody2D>();
+        playerAnimator = GetComponentInChildren<PlayerAnimator>();
         SetupInputSystem();
 
         playerSanity = new Sanity(PlayerMaxSanity, PlayerDrainSanity);
@@ -59,35 +69,52 @@ public class PlayerController : MonoBehaviour
         MaskTimer = MaskingTime;
     }
 
-    void Update() {
-        if(playerSanity.currentSanity <= 0){
+    void Update()
+    {
+        if (playerSanity.currentSanity <= 0)
+        {
+            // todo
             Debug.Log("Game Over");
         }
-        if(playerFeathers.currentFeathers >= playerFeathers.maxFeathers){
+        if (playerFeathers.currentFeathers >= playerFeathers.maxFeathers)
+        {
+            // todo 
             Debug.Log("You Won");
         }
 
-        if(isNightmare) {
+        if (isRavenWorld)
+        {
             playerSanity.DrainSanity(PlayerDrainSanity);
         }
+
+        UpdateAnimations();
     }
 
     void FixedUpdate()
     {
-        switch(PlayerState) 
+        PickedUpTimer -= Time.deltaTime;
+
+        switch (PlayerState)
         {
             case EPlayerState.Moving:
                 ProcessPlayerMovement();
-                if (SwitchMask.IsPressed()) 
+                if (SwitchMask.IsPressed())
                 {
-                    isNightmare = !isNightmare;
+                    isRavenWorld = !isRavenWorld;
                     MaskTimer = MaskingTime;
                     PlayerState = EPlayerState.SwitchingMask;
                 }
                 else if (Interact.IsPressed())
                 {
-                    if(canInteract) {
+                    if (canInteract && PickedUpTimer < 0)
+                    {
+                        PickedUpTimer = PickedUpTimeout;
                         InteractWith();
+                    }
+                    else if (carrying && PickedUpTimer < 0)
+                    {
+                        PickedUpTimer = PickedUpTimeout;
+                        DropItem();
                     }
                 }
                 break;
@@ -95,7 +122,8 @@ public class PlayerController : MonoBehaviour
                 MaskTimer -= Time.deltaTime;
                 if (MaskTimer < 0)
                 {
-                    GM.SwitchWorld(isNightmare);
+                    GM.SwitchWorld(isRavenWorld);
+                    playerAnimator.SwitchWorld(!isRavenWorld);
                     PlayerState = EPlayerState.Moving;
                 }
                 break;
@@ -104,8 +132,32 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    void ChangeWorld() {
-        isNightmare = !isNightmare;
+    void UpdateAnimations()
+    {
+        if (playerAnimator == null) return;
+
+        bool isMoving = MoveLeft.IsPressed() || MoveRight.IsPressed();
+        playerAnimator.SetWalking(isMoving);
+
+        if (MoveLeft.IsPressed())
+        {
+            playerAnimator.transform.localScale = new Vector3(-0.05f, 0.05f, 0.05f);
+        }
+        else if (MoveRight.IsPressed())
+        {
+            playerAnimator.transform.localScale = new Vector3(0.05f, 0.05f, 0.05f);
+        }
+
+        bool isJumping = Jump.IsPressed() && Mathf.Abs(RB.linearVelocity.y) < 0.01f;
+        playerAnimator.SetJumping(isJumping);
+
+        bool isGrounded = Mathf.Abs(RB.linearVelocity.y) < 0.01f;
+        playerAnimator.SetGrounded(isGrounded);
+    }
+
+    void ChangeWorld()
+    {
+        isRavenWorld = !isRavenWorld;
 
         Debug.Log("World Changed");
     }
@@ -122,20 +174,20 @@ public class PlayerController : MonoBehaviour
     void ProcessPlayerMovement()
     {
         float velX = RB.linearVelocity.x;
-        if (Mathf.Abs(RB.linearVelocity.x) < PlayerMaxSpeed) 
+        if (Mathf.Abs(RB.linearVelocity.x) < PlayerMaxSpeed)
         {
-            if (MoveLeft.IsPressed()) 
+            if (MoveLeft.IsPressed())
             {
                 velX -= PlayerAcceleration;
             }
-            else if (MoveRight.IsPressed()) 
+            else if (MoveRight.IsPressed())
             {
                 velX += PlayerAcceleration;
             }
         }
 
         float impulseY = 0;
-        if (Jump.IsPressed()) 
+        if (Jump.IsPressed())
         {
             if (RB.linearVelocity.y == 0)
             {
@@ -147,31 +199,56 @@ public class PlayerController : MonoBehaviour
         RB.linearVelocity = new Vector2(velX, RB.linearVelocity.y);
     }
 
-    public void GainHealth(float gain) {
+    public void GainHealth(float gain)
+    {
         playerFeathers.CollectFeather();
         playerSanity.GainSanity(gain);
     }
 
-    public void DealDamage(float damage) {
+    public void DealDamage(float damage)
+    {
         playerSanity.LoseSanity(damage);
     }
 
-    public void CarryItem() {
-        inventory = interactable;
-        Debug.Log(inventory.objectName + " carried!");
+    public void CarryItem()
+    {
+        inventory = new CollectableSnapshot(interactable.gameObject);
+        canInteract = false;
+        carrying = true;
+
+        Debug.Log(inventory.collectable.objectName + " carried!");
     }
 
-    public void DropItem() {
+    public void DropItem()
+    {
+        GameObject spawn = Instantiate(
+            respawnPrefab,
+            transform.position,
+            inventory.rotation
+        );
 
+        spawn.transform.localScale = inventory.scale;
+
+        SpriteRenderer sr = spawn.GetComponent<SpriteRenderer>();
+        sr.sprite = inventory.sprite;
+        Collectable col = spawn.GetComponent<Collectable>();
+        col.objectName = inventory.collectable.objectName;
+        col.objectType = inventory.collectable.objectType;
+
+        inventory = null;
+        carrying = false;
+
+        Debug.Log(col.objectName + " dropped!");
     }
 
     void OnTriggerEnter2D(Collider2D collider)
     {
         if (collider != null)
         {
-           interactable = collider.gameObject.GetComponent<Collectable>(); 
-           canInteract = true;
-           //Debug.Log("Available Item: " + interactable.objectName);
+            interactable = collider;
+            canInteract = true;
+
+            Debug.Log("Available Item: " + interactable.gameObject.GetComponent<Collectable>().objectName);
         }
     }
 
@@ -183,25 +260,31 @@ public class PlayerController : MonoBehaviour
         Debug.Log("Available Item: None");
     }
 
-    private void InteractWith() {
-        switch(interactable.objectType)
+    private void InteractWith()
+    {
+        switch (interactable.gameObject.GetComponent<Collectable>().objectType)
         {
-            case Collect.Climb: {   
-                // todo
-                break;
-            }
-            case Collect.Carry: {
-                CarryItem();
-                break;
-            }
-            case Collect.Feather: {
-                GainHealth(interactable.sanityGain);
-                break;
-            }
+            case Collect.Climb:
+                {
+                    // todo
+                    break;
+                }
+            case Collect.Carry:
+                {
+                    if (!carrying)
+                    {
+                        CarryItem();
+                    }
+                    break;
+                }
+            case Collect.Feather:
+                {
+                    GainHealth(interactable.gameObject.GetComponent<Collectable>().sanityGain);
+                    break;
+                }
             default: break;
         }
-        Debug.Log(interactable.objectName + " collected!");
-
         Destroy(interactable.gameObject);
+        interactable = null;
     }
 }
