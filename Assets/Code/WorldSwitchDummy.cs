@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class WorldSwitchDummy : MonoBehaviour
 {
@@ -7,12 +8,19 @@ public class WorldSwitchDummy : MonoBehaviour
 
     private bool isSwanWorld = true;
 
+    private InputAction DoMask;
+
+    void Start()
+    {
+        DoMask = InputSystem.actions.FindAction("SwitchMask");
+    }
+
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.F))
-        {
-            ToggleWorld();
-        }
+        //if (DoMask.IsPressed())
+        //{
+        //   ToggleWorld();
+        //}
     }
 
     void ToggleWorld()

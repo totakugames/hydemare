@@ -32,6 +32,9 @@ public class PlayerController : MonoBehaviour
     private Collectable interactable;
     private Collectable inventory;
 
+    private float MaskingTime = 1.0f;
+    private float MaskTimer;
+
     enum EPlayerState
     {
         Moving = 0,
@@ -49,6 +52,8 @@ public class PlayerController : MonoBehaviour
 
         playerSanity = new Sanity(PlayerMaxSanity, PlayerDrainSanity);
         playerFeathers = new Feathers(PlayerMaxFeathers);
+
+        MaskTimer = MaskingTime;
     }
 
     void Update() {
@@ -72,11 +77,9 @@ public class PlayerController : MonoBehaviour
                 ProcessPlayerMovement();
                 if (SwitchMask.IsPressed()) 
                 {
-                    // Freeze player for 1s and play mask switching animation
-                    // Toggle visibility of items tagged with dark world
-
                     isNightmare = !isNightmare;
-                    Debug.Log("Nightmare: " + isNightmare);
+                    MaskTimer = MaskingTime;
+                    PlayerState = EPlayerState.SwitchingMask;
                 }
                 else if (Interact.IsPressed())
                 {
@@ -86,6 +89,17 @@ public class PlayerController : MonoBehaviour
                 }
                 break;
             case EPlayerState.SwitchingMask:
+                MaskTimer -= Time.deltaTime;
+                if (MaskTimer < 0)
+                {
+                    GameObject[] gameObjects = GameObject.FindGameObjectsWithTag("dark");
+                    foreach (GameObject obj in gameObjects)
+                    {
+                        Renderer objRender = obj.GetComponent<Renderer>();
+                        objRender.enabled = isNightmare;
+                    }
+                    PlayerState = EPlayerState.Moving;
+                }
                 break;
             case EPlayerState.Dead:
                 break;
@@ -159,7 +173,7 @@ public class PlayerController : MonoBehaviour
         {
            interactable = collider.gameObject.GetComponent<Collectable>(); 
            canInteract = true;
-           Debug.Log("Available Item: " + interactable.objectName);
+           //Debug.Log("Available Item: " + interactable.objectName);
         }
     }
 

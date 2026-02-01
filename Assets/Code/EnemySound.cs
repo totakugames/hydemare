@@ -74,11 +74,11 @@ void OnTriggerExit2D(Collider2D other)
         if (IsPlayerNearby())
         {
             audioSource.PlayOneShot(enemyWalkSound);
-            Debug.Log("Playing sound! Distance: ");
+            //Debug.Log("Playing sound! Distance: ");
         }
         else
         {
-            Debug.Log("NOT playing - PlayerNearby: " + IsPlayerNearby());
+            //Debug.Log("NOT playing - PlayerNearby: " + IsPlayerNearby());
         }
     }
 

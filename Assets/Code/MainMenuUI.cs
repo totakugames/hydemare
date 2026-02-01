@@ -10,7 +10,7 @@ public class MainMenuUI : MonoBehaviour
 
     public void OnBtnPlay()
     {
-        SceneManager.LoadScene("level0");
+        SceneManager.LoadScene("finalLevel");
     }
 
     public void OnBtnCredits()

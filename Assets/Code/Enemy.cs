@@ -106,7 +106,7 @@ public class Enemy : MonoBehaviour
                 else
                     Move();
 
-                Debug.Log(DistanceTo(MoveToTarget));
+                //Debug.Log(DistanceTo(MoveToTarget));
                 if (DistanceTo(MoveToTarget) < 0.5f) 
                 {
                     Mode = EState.Idle;
