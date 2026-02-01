@@ -31,7 +31,8 @@ public class PlayerController : MonoBehaviour
 
     private bool isRavenWorld = false;
 
-    private bool canInteract = false;
+    private bool canInteractWithCollectable = false;
+    private bool canInteractWithBase = false;
     private Collider2D interactable;
 
     private bool carrying = false;
@@ -117,13 +118,15 @@ public class PlayerController : MonoBehaviour
                 }
                 else if (Interact.IsPressed())
                 {
-                    if (canInteract && PickedUpTimer < 0)
-                    {
+                    if(canInteractWithCollectable && !carrying && PickedUpTimer < 0) {
                         PickedUpTimer = PickedUpTimeout;
                         InteractWith();
-                    }
-                    else if (carrying && PickedUpTimer < 0)
-                    {
+                    } else if(canInteractWithBase && PickedUpTimer < 0) {
+                        if (carrying) {
+                            PickedUpTimer = PickedUpTimeout;
+                            InteractWithOther();
+                        }
+                    } else if(carrying && PickedUpTimer < 0) {
                         PickedUpTimer = PickedUpTimeout;
                         DropItem();
                     }
@@ -224,7 +227,7 @@ public class PlayerController : MonoBehaviour
     public void CarryItem()
     {
         inventory = new CollectableSnapshot(interactable.gameObject);
-        canInteract = false;
+        canInteractWithCollectable = false;
         carrying = true;
 
         Debug.Log(inventory.collectable.objectName + " carried!");
@@ -257,16 +260,21 @@ public class PlayerController : MonoBehaviour
         if (collider != null)
         {
             interactable = collider;
-            canInteract = true;
-
-            Debug.Log("Available Item: " + interactable.gameObject.GetComponent<Collectable>().objectName);
+            if(collider.gameObject.GetComponent<Collectable>()) {
+                canInteractWithCollectable = true;
+                Debug.Log("Available Item: " + interactable.gameObject.GetComponent<Collectable>().objectName);
+            } else if(collider.gameObject.GetComponent<Base>()) {
+                canInteractWithBase = true;
+                Debug.Log("Available Base: " + interactable.gameObject.GetComponent<Base>().objectName);
+            }    
         }
     }
 
     void OnTriggerExit2D(Collider2D collectable)
     {
         interactable = null;
-        canInteract = false;
+        canInteractWithCollectable = false;
+        canInteractWithBase = false;
 
         Debug.Log("Available Item: None");
     }
@@ -297,5 +305,19 @@ public class PlayerController : MonoBehaviour
         }
         Destroy(interactable.gameObject);
         interactable = null;
+    }
+
+    private void InteractWithOther() {
+        if(!interactable.gameObject.GetComponent<Base>().neededItems.Contains(inventory.collectable.objectName)) {
+            Debug.Log("Thid doesn't fit here.");
+            
+            DropItem();
+        } else {    
+            Debug.Log(inventory.collectable.objectName + " used!");
+
+            interactable.gameObject.GetComponent<Base>().ConsumeItem(inventory.collectable.objectName);
+            inventory = null;
+            carrying = false;
+        }
     }
 }

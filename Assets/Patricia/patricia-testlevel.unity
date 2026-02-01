@@ -415,7 +415,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5eca76dfac9b7047afc13fef5618d46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Base
-  neededItems: []
+  objectName: Statue
+  neededItems:
+  - Diamant_1
+  - Diamant_2
   executedFunction: {fileID: 490327657}
 --- !u!114 &490327657
 MonoBehaviour:
@@ -903,6 +906,7 @@ MonoBehaviour:
   PlayerAcceleration: 0.3
   PlayerMaxSpeed: 2.5
   JumpMultiplier: 7
+  GM: {fileID: 0}
 --- !u!50 &1351333597
 Rigidbody2D:
   serializedVersion: 5
@@ -1034,7 +1038,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ccb50d5c24c0a3447801e964c61083ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Collectable
-  objectName: Key
+  objectName: Diamant_2
   objectType: 1
   sanityGain: 0
 --- !u!212 &1518586010
@@ -1268,7 +1272,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ccb50d5c24c0a3447801e964c61083ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Collectable
-  objectName: Key
+  objectName: Diamant_1
   objectType: 1
   sanityGain: 0
 --- !u!212 &1979596155
@@ -1456,6 +1460,7 @@ MonoBehaviour:
   MaxDistanceX: 1
   CamSpeedFactor: 1
   VerticalOffset: 0
+  Background: {fileID: 1151859168}
 --- !u!114 &2075832577
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -4,15 +4,36 @@ using System.Collections.Generic;
 public class Base : MonoBehaviour
 {
     [SerializeField]
-    private List<string> neededItems = new List<string>();
+    public string objectName;
+    [SerializeField]
+    public List<string> neededItems = new List<string>();
     [SerializeField]
     private ObjectExecution executedFunction;
 
-    public void test() {
-        executedFunction.execute();
+    private List<string> remainingItems;
+
+    void Awake()
+    {
+        remainingItems = new List<string>(neededItems);
     }
 
-    // todo auswertungslogik
-    // item entweder "annehmen" oder droppen
-    // dann exec ausführen, sobald alle benötigten items da sind 
+    public void ConsumeItem(string itemName) // todo call
+    {
+        if (remainingItems.Contains(itemName)) {
+
+            remainingItems.Remove(itemName);
+
+            if (remainingItems.Count == 0)
+            {
+                AllItemsDelivered();
+            }
+        }
+        Debug.Log(remainingItems.Count + " item(s) missing.");
+    }
+
+    private void AllItemsDelivered()
+    {
+        Debug.Log("aayyyyy");
+        executedFunction.execute();
+    }
 }
