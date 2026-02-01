@@ -4,6 +4,9 @@ using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour
 {
     [SerializeField]
+    private GameObject respawnPrefab;
+
+    [SerializeField]
     private float PlayerMaxSanity = 100f;
     [SerializeField]
     private float PlayerDrainSanity = 1f;
@@ -29,8 +32,13 @@ public class PlayerController : MonoBehaviour
     private bool isNightmare = false;
 
     private bool canInteract = false;
-    private Collectable interactable;
-    private Collectable inventory;
+    private Collider2D interactable;
+
+    private bool carrying = false;
+    private CollectableSnapshot inventory;
+
+    private float PickedUpTimeout = 0.5f;
+    private float PickedUpTimer = 0;
 
     enum EPlayerState
     {
@@ -49,13 +57,17 @@ public class PlayerController : MonoBehaviour
 
         playerSanity = new Sanity(PlayerMaxSanity, PlayerDrainSanity);
         playerFeathers = new Feathers(PlayerMaxFeathers);
+
+    
     }
 
     void Update() {
         if(playerSanity.currentSanity <= 0){
+            // todo
             Debug.Log("Game Over");
         }
         if(playerFeathers.currentFeathers >= playerFeathers.maxFeathers){
+            // todo 
             Debug.Log("You Won");
         }
 
@@ -66,6 +78,8 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
+        PickedUpTimer -= Time.deltaTime;
+
         switch(PlayerState) 
         {
             case EPlayerState.Moving:
@@ -80,8 +94,12 @@ public class PlayerController : MonoBehaviour
                 }
                 else if (Interact.IsPressed())
                 {
-                    if(canInteract) {
-                        InteractWith();
+                    if(canInteract &&  PickedUpTimer < 0) {
+                        PickedUpTimer = PickedUpTimeout;
+                        InteractWith(); // todo interact between two items (patricia)
+                    } else if(carrying && PickedUpTimer < 0) {
+                        PickedUpTimer = PickedUpTimeout;
+                        DropItem();
                     }
                 }
                 break;
@@ -145,21 +163,42 @@ public class PlayerController : MonoBehaviour
     }
 
     public void CarryItem() {
-        inventory = interactable;
-        Debug.Log(inventory.objectName + " carried!");
+        inventory = new CollectableSnapshot(interactable.gameObject);
+        canInteract = false;
+        carrying = true;
+
+        Debug.Log(inventory.collectable.objectName + " carried!");
     }
 
     public void DropItem() {
+        GameObject spawn = Instantiate(
+            respawnPrefab,
+            transform.position, 
+            inventory.rotation
+        );
 
+        spawn.transform.localScale = inventory.scale;
+
+        SpriteRenderer sr = spawn.GetComponent<SpriteRenderer>();
+        sr.sprite = inventory.sprite;
+        Collectable col = spawn.GetComponent<Collectable>();
+        col.objectName = inventory.collectable.objectName;
+        col.objectType = inventory.collectable.objectType;
+
+        inventory = null;
+        carrying = false;
+
+        Debug.Log(col.objectName + " dropped!");
     }
 
     void OnTriggerEnter2D(Collider2D collider)
     {
         if (collider != null)
         {
-           interactable = collider.gameObject.GetComponent<Collectable>(); 
-           canInteract = true;
-           Debug.Log("Available Item: " + interactable.objectName);
+            interactable = collider;
+            canInteract = true;
+
+            Debug.Log("Available Item: " + interactable.gameObject.GetComponent<Collectable>().objectName);
         }
     }
 
@@ -172,24 +211,25 @@ public class PlayerController : MonoBehaviour
     }
 
     private void InteractWith() {
-        switch(interactable.objectType)
-        {
-            case Collect.Climb: {   
-                // todo
-                break;
+            switch(interactable.gameObject.GetComponent<Collectable>().objectType)
+            {
+                case Collect.Climb: {   
+                    // todo
+                    break;
+                }
+                case Collect.Carry: {
+                    if(!carrying) {
+                        CarryItem();
+                    }   
+                    break;    
+                }
+                case Collect.Feather: {
+                    GainHealth(interactable.gameObject.GetComponent<Collectable>().sanityGain);
+                    break;
+                }
+                default: break;
             }
-            case Collect.Carry: {
-                CarryItem();
-                break;
-            }
-            case Collect.Feather: {
-                GainHealth(interactable.sanityGain);
-                break;
-            }
-            default: break;
-        }
-        Debug.Log(interactable.objectName + " collected!");
-
-        Destroy(interactable.gameObject);
+            Destroy(interactable.gameObject);
+            interactable = null;
     }
 }
