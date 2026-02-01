@@ -45,6 +45,8 @@ public class Enemy : MonoBehaviour
 
     private GameObject Player;
     private SpriteRenderer Visual;
+    private Animator Anim;
+    private float OriginalVisualPlaybackSpeed;
     private Rigidbody2D RB;
 
 
@@ -57,11 +59,21 @@ public class Enemy : MonoBehaviour
         RB = GetComponent<Rigidbody2D>();
         GameObject visualObj = transform.GetChild(0).gameObject;
         Visual = visualObj.GetComponent<SpriteRenderer>();
+        Anim = GetComponent<Animator>();
+        OriginalVisualPlaybackSpeed = Anim.speed;
     }
 
     void Update()
     {
         Visual.flipX = !FacesLeft;
+
+        if (!CanFly) 
+        {
+            if (Mode == EState.Idle)
+                Anim.speed = 0;
+            else
+                Anim.speed = OriginalVisualPlaybackSpeed;
+        }
     }
 
     // Update is called once per frame
@@ -74,7 +86,6 @@ public class Enemy : MonoBehaviour
 
         if (SeesPlayer())
         {
-            Debug.Log("Seen");
             Mode = EState.Hunt;
         }
 
@@ -95,7 +106,7 @@ public class Enemy : MonoBehaviour
                 else
                     Move();
 
-                Debug.Log(DistanceTo(MoveToTarget));
+                //Debug.Log(DistanceTo(MoveToTarget));
                 if (DistanceTo(MoveToTarget) < 0.5f) 
                 {
                     Mode = EState.Idle;
@@ -103,7 +114,6 @@ public class Enemy : MonoBehaviour
                 }
                 break;
             case EState.Hunt:
-                Debug.Log("IsHunting");
                 if (SeesPlayerBidir())
                 {
                     MoveToTarget = Player.transform.position;

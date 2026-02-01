@@ -40,6 +40,9 @@ public class PlayerController : MonoBehaviour
     private float PickedUpTimeout = 0.5f;
     private float PickedUpTimer = 0;
 
+    private float MaskingTime = 1.0f;
+    private float MaskTimer;
+
     enum EPlayerState
     {
         Moving = 0,
@@ -50,6 +53,9 @@ public class PlayerController : MonoBehaviour
 
     private Rigidbody2D RB;
 
+    [SerializeField]
+    private GameManager GM;
+
     void Start()
     {
         RB = GetComponent<Rigidbody2D>();
@@ -58,7 +64,7 @@ public class PlayerController : MonoBehaviour
         playerSanity = new Sanity(PlayerMaxSanity, PlayerDrainSanity);
         playerFeathers = new Feathers(PlayerMaxFeathers);
 
-    
+        MaskTimer = MaskingTime;
     }
 
     void Update() {
@@ -86,11 +92,9 @@ public class PlayerController : MonoBehaviour
                 ProcessPlayerMovement();
                 if (SwitchMask.IsPressed()) 
                 {
-                    // Freeze player for 1s and play mask switching animation
-                    // Toggle visibility of items tagged with dark world
-
                     isNightmare = !isNightmare;
-                    Debug.Log("Nightmare: " + isNightmare);
+                    MaskTimer = MaskingTime;
+                    PlayerState = EPlayerState.SwitchingMask;
                 }
                 else if (Interact.IsPressed())
                 {
@@ -104,6 +108,12 @@ public class PlayerController : MonoBehaviour
                 }
                 break;
             case EPlayerState.SwitchingMask:
+                MaskTimer -= Time.deltaTime;
+                if (MaskTimer < 0)
+                {
+                    GM.SwitchWorld(isNightmare);
+                    PlayerState = EPlayerState.Moving;
+                }
                 break;
             case EPlayerState.Dead:
                 break;

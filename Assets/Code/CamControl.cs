@@ -4,14 +4,25 @@ public class CamControl : MonoBehaviour
 {
     [SerializeField]
     private GameObject Player;
+
     [SerializeField]
     private int MaxDistanceY = 200;
     [SerializeField]
     private int MaxDistanceX = 300;
     [SerializeField]
+
     private float CamSpeedFactor = 1.0f;
+
     [SerializeField]
     private float VerticalOffset = 0;
+
+    [SerializeField]
+    private GameObject Background;
+    private SpriteRenderer BackgroundSprite;
+    private float CamPosMinX;
+    private float CamPosMaxX;
+
+    private Camera MainCam;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -19,6 +30,13 @@ public class CamControl : MonoBehaviour
         transform.position = new Vector3(Player.transform.position.x,
                                         Player.transform.position.y,
                                         transform.position.z);
+        BackgroundSprite = Background.GetComponent<SpriteRenderer>();
+        MainCam = GetComponent<Camera>();
+        
+        Bounds bgBounds = BackgroundSprite.sprite.bounds;
+        float camWidthHalf = (MainCam.ScreenToWorldPoint(new Vector3(MainCam.pixelWidth, 0, 0)).x - MainCam.ScreenToWorldPoint(new Vector3(0, 0, 0)).x) / 2;
+        CamPosMinX = camWidthHalf + bgBounds.center.x - bgBounds.extents.x;
+        CamPosMaxX = bgBounds.center.x + bgBounds.extents.x - camWidthHalf;
     }
 
     // Update is called once per frame
@@ -41,6 +59,7 @@ public class CamControl : MonoBehaviour
             newX += moveX;
         }        
 
+        newX = Mathf.Clamp(newX, CamPosMinX, CamPosMaxX);
         transform.position = new Vector3(newX, newY + VerticalOffset, transform.position.z);
     }
 }
