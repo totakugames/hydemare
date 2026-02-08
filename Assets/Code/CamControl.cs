@@ -42,8 +42,6 @@ public class CamControl : MonoBehaviour
         float camHeightHalf = (MainCam.ScreenToWorldPoint(topLeftCorner).y - MainCam.ScreenToWorldPoint(bottomRightCorner).y) / 2;
         CamPosMin.y = bgBounds.center.y - bgBounds.extents.y + camHeightHalf;
         CamPosMax.y = bgBounds.center.y + bgBounds.extents.y - camHeightHalf;
-
-        Debug.Log(camHeightHalf + " " + camWidthHalf);
     }
 
     // Update is called once per frame
@@ -68,7 +66,6 @@ public class CamControl : MonoBehaviour
 
         newX = Mathf.Clamp(newX, CamPosMin.x, CamPosMax.x);
         newY = Mathf.Clamp(newY, CamPosMin.y, CamPosMax.y);
-        Debug.Log(newY + " " + CamPosMin.y + " " + CamPosMax.y);
         transform.position = new Vector3(newX, newY, transform.position.z);
     }
 }

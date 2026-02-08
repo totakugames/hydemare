@@ -192,11 +192,11 @@ public class PlayerController : MonoBehaviour
         {
             if (MoveLeft.IsPressed())
             {
-                velX -= PlayerAcceleration;
+                velX -= PlayerAcceleration * Time.deltaTime;
             }
             else if (MoveRight.IsPressed())
             {
-                velX += PlayerAcceleration;
+                velX += PlayerAcceleration * Time.deltaTime;
             }
         }
 
