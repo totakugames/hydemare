@@ -9,18 +9,16 @@ public class CamControl : MonoBehaviour
     private int MaxDistanceY = 200;
     [SerializeField]
     private int MaxDistanceX = 300;
-    [SerializeField]
 
+    [SerializeField]
     private float CamSpeedFactor = 1.0f;
-
-    [SerializeField]
-    private float VerticalOffset = 0;
 
     [SerializeField]
     private GameObject Background;
     private SpriteRenderer BackgroundSprite;
-    private float CamPosMinX;
-    private float CamPosMaxX;
+
+    private Vector2 CamPosMin;
+    private Vector2 CamPosMax;
 
     private Camera MainCam;
 
@@ -33,10 +31,19 @@ public class CamControl : MonoBehaviour
         BackgroundSprite = Background.GetComponent<SpriteRenderer>();
         MainCam = GetComponent<Camera>();
         
-        Bounds bgBounds = BackgroundSprite.sprite.bounds;
-        float camWidthHalf = (MainCam.ScreenToWorldPoint(new Vector3(MainCam.pixelWidth, 0, 0)).x - MainCam.ScreenToWorldPoint(new Vector3(0, 0, 0)).x) / 2;
-        CamPosMinX = camWidthHalf + bgBounds.center.x - bgBounds.extents.x;
-        CamPosMaxX = bgBounds.center.x + bgBounds.extents.x - camWidthHalf;
+        Vector3 topLeftCorner = new Vector3(0, MainCam.pixelHeight, 0);
+        Vector3 bottomRightCorner = new Vector3(MainCam.pixelWidth, 0, 0);
+
+        Bounds bgBounds = BackgroundSprite.bounds;
+        float camWidthHalf = (MainCam.ScreenToWorldPoint(bottomRightCorner).x - MainCam.ScreenToWorldPoint(topLeftCorner).x) / 2;
+        CamPosMin.x = camWidthHalf + bgBounds.center.x - bgBounds.extents.x;
+        CamPosMax.x = bgBounds.center.x + bgBounds.extents.x - camWidthHalf;
+
+        float camHeightHalf = (MainCam.ScreenToWorldPoint(topLeftCorner).y - MainCam.ScreenToWorldPoint(bottomRightCorner).y) / 2;
+        CamPosMin.y = bgBounds.center.y - bgBounds.extents.y + camHeightHalf;
+        CamPosMax.y = bgBounds.center.y + bgBounds.extents.y - camHeightHalf;
+
+        Debug.Log(camHeightHalf + " " + camWidthHalf);
     }
 
     // Update is called once per frame
@@ -57,9 +64,11 @@ public class CamControl : MonoBehaviour
         {
             float moveX = ((dX - Mathf.Sign(dX) * MaxDistanceX) / 10.0f) * CamSpeedFactor;
             newX += moveX;
-        }        
+        }     
 
-        newX = Mathf.Clamp(newX, CamPosMinX, CamPosMaxX);
-        transform.position = new Vector3(newX, newY + VerticalOffset, transform.position.z);
+        newX = Mathf.Clamp(newX, CamPosMin.x, CamPosMax.x);
+        newY = Mathf.Clamp(newY, CamPosMin.y, CamPosMax.y);
+        Debug.Log(newY + " " + CamPosMin.y + " " + CamPosMax.y);
+        transform.position = new Vector3(newX, newY, transform.position.z);
     }
 }
