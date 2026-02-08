@@ -262,10 +262,10 @@ public class PlayerController : MonoBehaviour
             interactable = collider;
             if(collider.gameObject.GetComponent<Collectable>()) {
                 canInteractWithCollectable = true;
-                Debug.Log("Available Item: " + interactable.gameObject.GetComponent<Collectable>().objectName);
+                //Debug.Log("Available Item: " + interactable.gameObject.GetComponent<Collectable>().objectName);
             } else if(collider.gameObject.GetComponent<Base>()) {
                 canInteractWithBase = true;
-                Debug.Log("Available Base: " + interactable.gameObject.GetComponent<Base>().objectName);
+                //Debug.Log("Available Base: " + interactable.gameObject.GetComponent<Base>().objectName);
             }    
         }
     }
@@ -276,7 +276,7 @@ public class PlayerController : MonoBehaviour
         canInteractWithCollectable = false;
         canInteractWithBase = false;
 
-        Debug.Log("Available Item: None");
+        //Debug.Log("Available Item: None");
     }
 
     private void InteractWith()

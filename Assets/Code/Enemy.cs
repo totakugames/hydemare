@@ -49,6 +49,9 @@ public class Enemy : MonoBehaviour
     private float OriginalVisualPlaybackSpeed;
     private Rigidbody2D RB;
 
+    [SerializeField]
+    private bool Debugging = false;
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -88,6 +91,9 @@ public class Enemy : MonoBehaviour
         {
             Mode = EState.Hunt;
         }
+
+        if (Debugging)
+            Debug.Log(Mode);
 
         switch(Mode) 
         {
@@ -131,9 +137,10 @@ public class Enemy : MonoBehaviour
                 }
                 else 
                 {
-                    Vector3 halfway = IdleBoxLimiterRight.transform.position - IdleBoxLimiterLeft.transform.position;
+                    Vector3 halfway = (IdleBoxLimiterRight.transform.position - IdleBoxLimiterLeft.transform.position) / 2;
                     MoveToTarget = IdleBoxLimiterLeft.transform.position + halfway;
-                    MoveToTarget.y = transform.position.y;
+                    if (!CanFly)
+                        MoveToTarget.y = transform.position.y;
                     Mode = EState.MoveTo;
 
                     if (CanFly)
@@ -211,5 +218,6 @@ public class Enemy : MonoBehaviour
         float dirY = Mathf.Sign(MoveToTarget.y - transform.position.y);
         float impulseY = dirY * MovementSpeed;
         RB.linearVelocity = new Vector2(impulseX, impulseY);
+        Debug.Log(impulseY + " Y");
     }
 }
