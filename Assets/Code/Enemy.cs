@@ -218,6 +218,6 @@ public class Enemy : MonoBehaviour
         float dirY = Mathf.Sign(MoveToTarget.y - transform.position.y);
         float impulseY = dirY * MovementSpeed;
         RB.linearVelocity = new Vector2(impulseX, impulseY);
-        Debug.Log(impulseY + " Y");
+        // Debug.Log(impulseY + " Y");
     }
 }

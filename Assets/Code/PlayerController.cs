@@ -60,6 +60,7 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField]
     private GameManager GM;
+    private HudManager HM;
 
     [SerializeField]
     private GameObject ES;
@@ -70,6 +71,9 @@ public class PlayerController : MonoBehaviour
         RB = GetComponent<Rigidbody2D>();
         playerAnimator = GetComponentInChildren<PlayerAnimator>();
         SetupInputSystem();
+
+        GameObject obj = GameObject.Find("Hud");
+        HM = obj.GetComponent<HudManager>();
 
         playerSanity = new Sanity(PlayerMaxSanity, PlayerDrainSanity);
         playerFeathers = new Feathers(PlayerMaxFeathers);
@@ -233,6 +237,8 @@ public class PlayerController : MonoBehaviour
         canInteractWithCollectable = false;
         carrying = true;
 
+        HM.SetHeldItem(interactable.gameObject.GetComponent<SpriteRenderer>());
+
         Debug.Log(inventory.collectable.objectName + " carried!");
     }
 
@@ -254,6 +260,8 @@ public class PlayerController : MonoBehaviour
 
         inventory = null;
         carrying = false;
+
+        HM.ClearHeldItem();
 
         Debug.Log(col.objectName + " dropped!");
     }
