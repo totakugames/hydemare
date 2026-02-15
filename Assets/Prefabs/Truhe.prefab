@@ -156,6 +156,9 @@ MonoBehaviour:
   neededItems:
   - Key
   executedFunction: {fileID: -6546722828498899262}
+  storyPanel: {fileID: 0}
+  partialStory: 
+  failureStory: "Die Truhe l\xE4sst sich so nicht \xF6ffnen."
 --- !u!114 &-6546722828498899262
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -169,3 +172,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Exec_Chest
   spawnPrefab: {fileID: 878199135204800134, guid: f4a78d53cd4214c4aa91588614c5d960, type: 3}
+  storyPanel: {fileID: 0}
+  successStory: "Der Schl\xFCssel quietscht im Schloss, dann \xF6ffnet die Truhe
+    sich knarrend. Darin liegt eine Feder."

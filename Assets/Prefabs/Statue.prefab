@@ -157,6 +157,9 @@ MonoBehaviour:
   - Diamond_Real_1
   - Diamond_Real_2
   executedFunction: {fileID: 8236915000521122162}
+  storyPanel: {fileID: 0}
+  partialStory: Das scheint zu funktionieren, aber irgendetwas fehlt noch...
+  failureStory: Nein, das funktioniert hier nicht.
 --- !u!114 &8236915000521122162
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -170,3 +173,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Exec_Statue
   spawnPrefab: {fileID: 7643977528442884730, guid: 3d3dfb89c213a70498db5345c858c7ee, type: 3}
+  storyPanel: {fileID: 0}
+  successStory: "Die Diamanten schmiegen sich in die leeren Augenh\xF6hlen der Statue.
+    Der Mund des Pferdes \xF6ffnet sich und ein Schl\xFCssel f\xE4llt heraus."

@@ -10,6 +10,13 @@ public class Base : MonoBehaviour
     [SerializeField]
     private ObjectExecution executedFunction;
 
+    [SerializeField] 
+    private StoryPanel storyPanel;
+    [SerializeField]
+    private string partialStory;
+    [SerializeField]
+    public string failureStory;
+
     private List<string> remainingItems;
 
     void Awake()
@@ -27,10 +34,14 @@ public class Base : MonoBehaviour
             {
                 AllItemsDelivered();
             }
+            else {
+                if (!string.IsNullOrEmpty(partialStory) && storyPanel != null)
+                {
+                    storyPanel.ShowStory(partialStory, transform);
+                }
+            }
         }
-        else {
-            // todo textbox
-        }
+
         Debug.Log(remainingItems.Count + " item(s) missing.");
     }
 

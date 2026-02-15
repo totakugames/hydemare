@@ -320,9 +320,14 @@ public class PlayerController : MonoBehaviour
 
     private void InteractWithOther() {
         Base isBase = interactable.gameObject.GetComponent<Base>();
-        if(!isBase) {
+        if(isBase) {
             if(!isBase.neededItems.Contains(inventory.collectable.objectName)) {
             Debug.Log("This doesn't fit here.");
+
+            if (!string.IsNullOrEmpty(isBase.failureStory) && storyPanel != null)
+            {
+                storyPanel.ShowStory(isBase.failureStory, transform);
+            }
             
             DropItem();
             }
