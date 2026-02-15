@@ -9,15 +9,14 @@ public class StoryPanel : MonoBehaviour
     [Header("UI References")]
     [SerializeField] private GameObject panelObject;
     [SerializeField] private TextMeshProUGUI storyText;
-    [SerializeField] private TextMeshProUGUI continuePrompt; // "Press E to continue..."
+    [SerializeField] private TextMeshProUGUI continuePrompt;
     
     [Header("Settings")]
-    [SerializeField] private float verticalOffset = 100f; // Offset über dem Charakter
+    [SerializeField] private float verticalOffset = 100f;
     
-    // Nutze die selbe Interact-Action wie im PlayerController
     private InputAction continueAction;
     
-    private Transform followTarget; // Der Character
+    private Transform followTarget;
     private Camera mainCamera;
     
     private List<string> pages = new List<string>();
@@ -34,7 +33,6 @@ public class StoryPanel : MonoBehaviour
         if (continuePrompt != null)
             continuePrompt.gameObject.SetActive(false);
         
-        // Interact Action aus dem Input System holen (selbe wie im PlayerController)
         continueAction = InputSystem.actions.FindAction("Interact");
     }
     
@@ -42,7 +40,6 @@ public class StoryPanel : MonoBehaviour
     {
         if (!isShowingStory) return;
         
-        // Panel über dem Character positionieren
         if (followTarget != null)
         {
             Vector3 screenPos = mainCamera.WorldToScreenPoint(followTarget.position);
@@ -50,43 +47,36 @@ public class StoryPanel : MonoBehaviour
             panelObject.transform.position = screenPos;
         }
         
-        // Weiter-Taste drücken
         if (continueAction != null && continueAction.WasPressedThisFrame())
         {
             NextPage();
         }
     }
     
-    /// <summary>
-    /// Zeigt eine Story an, die automatisch in Seiten aufgeteilt wird
-    /// </summary>
     public void ShowStory(string fullText, Transform characterTransform)
     {
         followTarget = characterTransform;
         
-        // Text in Seiten aufteilen basierend auf der TextMeshPro-Größe
         pages = SplitTextIntoPages(fullText);
         currentPageIndex = 0;
         
         isShowingStory = true;
         panelObject.SetActive(true);
+
+        Time.timeScale = 0f;
         
-        // Erste Seite anzeigen
         DisplayCurrentPage();
         
-        // NICHT Time.timeScale nutzen - interferiert mit GameJam State-System
-        // Bei Bedarf im PlayerController ein "isReadingStory" Flag setzen
     }
     
-    /// <summary>
-    /// Versteckt das Story Panel
-    /// </summary>
     public void HideStory()
     {
         isShowingStory = false;
         panelObject.SetActive(false);
         followTarget = null;
         pages.Clear();
+        
+        Time.timeScale = 1f;
     }
     
     private void NextPage()
@@ -118,8 +108,8 @@ public class StoryPanel : MonoBehaviour
         {
             continuePrompt.gameObject.SetActive(true);
             continuePrompt.text = hasMorePages 
-                ? "Press E to continue..." 
-                : "Press E to close";
+                ? "Press Space to continue..." 
+                : "Press Space to close";
         }
     }
     
