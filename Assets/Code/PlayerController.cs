@@ -22,6 +22,9 @@ public class PlayerController : MonoBehaviour
     private float PlayerMaxSpeed = 2.5f;
     [SerializeField]
     private float JumpMultiplier = 1.0f;
+    
+    [SerializeField] 
+    private StoryPanel storyPanel;
 
     private InputAction MoveLeft;
     private InputAction MoveRight;
@@ -262,10 +265,8 @@ public class PlayerController : MonoBehaviour
             interactable = collider;
             if(collider.gameObject.GetComponent<Collectable>()) {
                 canInteractWithCollectable = true;
-                //Debug.Log("Available Item: " + interactable.gameObject.GetComponent<Collectable>().objectName);
             } else if(collider.gameObject.GetComponent<Base>()) {
                 canInteractWithBase = true;
-                //Debug.Log("Available Base: " + interactable.gameObject.GetComponent<Base>().objectName);
             }    
         }
     }
@@ -275,17 +276,17 @@ public class PlayerController : MonoBehaviour
         interactable = null;
         canInteractWithCollectable = false;
         canInteractWithBase = false;
-
-        //Debug.Log("Available Item: None");
     }
 
     private void InteractWith()
     {
-        switch (interactable.gameObject.GetComponent<Collectable>().objectType)
+        Collectable collectableComponent = interactable.gameObject.GetComponent<Collectable>();
+        
+        switch (collectableComponent.objectType)
         {
             case Collect.Climb:
                 {
-                    ClimbStairs(interactable.gameObject.GetComponent<Collectable>().escalatorTargetPosition);
+                    ClimbStairs(collectableComponent.escalatorTargetPosition);
                     break;
                 }
             case Collect.Carry:
@@ -298,7 +299,14 @@ public class PlayerController : MonoBehaviour
                 }
             case Collect.Feather:
                 {
-                    GainHealth(interactable.gameObject.GetComponent<Collectable>().sanityGain);
+                    // Story Panel anzeigen wenn Text vorhanden
+                    if (!string.IsNullOrEmpty(collectableComponent.storyText) && storyPanel != null)
+                    {
+                        storyPanel.ShowStory(collectableComponent.storyText, transform);
+                    }
+                    
+                    // Sanity & Feather sammeln
+                    GainHealth(collectableComponent.sanityGain);
                     break;
                 }
             default: break;
@@ -309,7 +317,7 @@ public class PlayerController : MonoBehaviour
 
     private void InteractWithOther() {
         if(!interactable.gameObject.GetComponent<Base>().neededItems.Contains(inventory.collectable.objectName)) {
-            Debug.Log("Thid doesn't fit here.");
+            Debug.Log("This doesn't fit here.");
             
             DropItem();
         } else {    
