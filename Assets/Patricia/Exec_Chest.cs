@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Exec_Statue : ObjectExecution
+public class Exec_Chest : ObjectExecution
 {
   [SerializeField]
   private GameObject spawnPrefab;
@@ -15,6 +15,6 @@ public class Exec_Statue : ObjectExecution
           spawnPrefab.transform.rotation
         );
 
-    Debug.Log("statue puzzle was solved, wee!");
+    Debug.Log("chest puzzle was solved, wee!");
   }
 }

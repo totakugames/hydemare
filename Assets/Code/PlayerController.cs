@@ -32,8 +32,6 @@ public class PlayerController : MonoBehaviour
     private InputAction Interact;
     private InputAction Jump;
 
-    private bool isRavenWorld = false;
-
     private bool canInteractWithCollectable = false;
     private bool canInteractWithBase = false;
     private Collider2D interactable;
@@ -100,8 +98,8 @@ public class PlayerController : MonoBehaviour
             }
         }
         
-
-        if (isRavenWorld)
+        // Check if we're in Raven world via GameManager
+        if (GM != null && GM.IsRavenWorld)
         {
             playerSanity.DrainSanity(PlayerDrainSanity);
         }
@@ -119,7 +117,6 @@ public class PlayerController : MonoBehaviour
                 ProcessPlayerMovement();
                 if (SwitchMask.IsPressed())
                 {
-                    isRavenWorld = !isRavenWorld;
                     MaskTimer = MaskingTime;
                     PlayerState = EPlayerState.SwitchingMask;
                 }
@@ -143,8 +140,18 @@ public class PlayerController : MonoBehaviour
                 MaskTimer -= Time.deltaTime;
                 if (MaskTimer < 0)
                 {
-                    GM.SwitchWorld(isRavenWorld);
-                    playerAnimator.SwitchWorld(!isRavenWorld);
+                    // Delegate world switching to GameManager
+                    if (GM != null)
+                    {
+                        GM.ToggleWorld();
+                    }
+                    
+                    // Update player animator
+                    if (playerAnimator != null && GM != null)
+                    {
+                        playerAnimator.SwitchWorld(!GM.IsRavenWorld);
+                    }
+                    
                     PlayerState = EPlayerState.Moving;
                 }
                 break;
@@ -174,13 +181,6 @@ public class PlayerController : MonoBehaviour
 
         bool isGrounded = Mathf.Abs(RB.linearVelocity.y) < 0.01f;
         playerAnimator.SetGrounded(isGrounded);
-    }
-
-    void ChangeWorld()
-    {
-        isRavenWorld = !isRavenWorld;
-
-        Debug.Log("World Changed");
     }
 
     void SetupInputSystem()
@@ -270,11 +270,14 @@ public class PlayerController : MonoBehaviour
     {
         if (collider != null)
         {
-            interactable = collider;
             if(collider.gameObject.GetComponent<Collectable>()) {
                 canInteractWithCollectable = true;
+                interactable = collider;
+                //Debug.Log("Available Item: " + interactable.gameObject.GetComponent<Collectable>().objectName);
             } else if(collider.gameObject.GetComponent<Base>()) {
                 canInteractWithBase = true;
+                interactable = collider;
+                //Debug.Log("Available Base: " + interactable.gameObject.GetComponent<Base>().objectName);
             }    
         }
     }
@@ -324,10 +327,13 @@ public class PlayerController : MonoBehaviour
     }
 
     private void InteractWithOther() {
-        if(!interactable.gameObject.GetComponent<Base>().neededItems.Contains(inventory.collectable.objectName)) {
+        Base isBase = interactable.gameObject.GetComponent<Base>();
+        if(!isBase) {
+            if(!isBase.neededItems.Contains(inventory.collectable.objectName)) {
             Debug.Log("This doesn't fit here.");
             
             DropItem();
+            }
         } else {    
             Debug.Log(inventory.collectable.objectName + " used!");
 
