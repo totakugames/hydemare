@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 using System.Collections.Generic;
 
 public class HudManager : MonoBehaviour
@@ -12,7 +13,13 @@ public class HudManager : MonoBehaviour
     [SerializeField]
     GameObject SwanMask;
     [SerializeField]
-    SpriteRenderer HeldItem;
+    GameObject HeldItemObj;
+    Image HeldItem;
+
+    public void Start() 
+    {
+        HeldItem = HeldItemObj.GetComponent<Image>();
+    }
 
     public void SetSanityBar(float percentage)
     {
@@ -32,9 +39,15 @@ public class HudManager : MonoBehaviour
         SwanMask.SetActive(!toRaven);
     }
 
-    public void SetHeldItem()
+    public void SetHeldItem(SpriteRenderer takeSpriteFrom)
     {
-        // TODO
+        HeldItem.sprite = takeSpriteFrom.sprite;
+        HeldItem.enabled = true;
+    }
+
+    public void ClearHeldItem() 
+    {
+        HeldItem.enabled = false;
     }
 
     public void SetFeathers(int cnt)
