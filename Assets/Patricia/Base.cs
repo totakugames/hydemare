@@ -17,7 +17,7 @@ public class Base : MonoBehaviour
         remainingItems = new List<string>(neededItems);
     }
 
-    public void ConsumeItem(string itemName) // todo call
+    public void ConsumeItem(string itemName) 
     {
         if (remainingItems.Contains(itemName)) {
 
@@ -27,6 +27,9 @@ public class Base : MonoBehaviour
             {
                 AllItemsDelivered();
             }
+        }
+        else {
+            // todo textbox
         }
         Debug.Log(remainingItems.Count + " item(s) missing.");
     }

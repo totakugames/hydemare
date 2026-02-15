@@ -259,12 +259,13 @@ public class PlayerController : MonoBehaviour
     {
         if (collider != null)
         {
-            interactable = collider;
             if(collider.gameObject.GetComponent<Collectable>()) {
                 canInteractWithCollectable = true;
+                interactable = collider;
                 //Debug.Log("Available Item: " + interactable.gameObject.GetComponent<Collectable>().objectName);
             } else if(collider.gameObject.GetComponent<Base>()) {
                 canInteractWithBase = true;
+                interactable = collider;
                 //Debug.Log("Available Base: " + interactable.gameObject.GetComponent<Base>().objectName);
             }    
         }
@@ -308,10 +309,13 @@ public class PlayerController : MonoBehaviour
     }
 
     private void InteractWithOther() {
-        if(!interactable.gameObject.GetComponent<Base>().neededItems.Contains(inventory.collectable.objectName)) {
-            Debug.Log("Thid doesn't fit here.");
+        Base isBase = interactable.gameObject.GetComponent<Base>();
+        if(!isBase) {
+            if(!isBase.neededItems.Contains(inventory.collectable.objectName)) {
+            Debug.Log("This doesn't fit here.");
             
             DropItem();
+            }
         } else {    
             Debug.Log(inventory.collectable.objectName + " used!");
 
