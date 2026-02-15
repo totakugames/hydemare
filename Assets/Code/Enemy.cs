@@ -7,6 +7,7 @@ public class Enemy : MonoBehaviour
         Idle = 0,
         MoveTo = 1,
         Hunt = 2,
+        AttackPause = 3,
     }
     private EState Mode = EState.Idle;
 
@@ -22,11 +23,11 @@ public class Enemy : MonoBehaviour
     private GameObject IdleBoxLimiterRight;
     private Vector3 MoveToTarget;
     [SerializeField]
-    private float MovementSpeed = 1.0f;
+    private float MovementSpeed = 1.5f;
 
 
     [SerializeField]
-    private float AttackFrequency = 1.0f;
+    private float AttackFrequency = 3.0f;
     private float AttackTimer;
     [SerializeField]
     private float AttackRange = 0.2f;
@@ -72,7 +73,7 @@ public class Enemy : MonoBehaviour
 
         if (!CanFly) 
         {
-            if (Mode == EState.Idle)
+            if (Mode == EState.Idle || Mode == EState.AttackPause)
                 Anim.speed = 0;
             else
                 Anim.speed = OriginalVisualPlaybackSpeed;
@@ -87,7 +88,7 @@ public class Enemy : MonoBehaviour
 
         FacesLeft = MoveToTarget.x < transform.position.x;
 
-        if (SeesPlayer())
+        if (SeesPlayer() && Mode != EState.AttackPause)
         {
             Mode = EState.Hunt;
         }
@@ -126,7 +127,13 @@ public class Enemy : MonoBehaviour
                     if (DistanceTo(Player) <= AttackRange && AttackTimer < 0) 
                     {
                         Player.GetComponent<PlayerController>().DealDamage(AttackDamage);
-                        AttackTimer = AttackFrequency;
+                        AttackTimer = 0.5f * AttackFrequency;
+                        Mode = EState.AttackPause;
+                        RB.linearVelocity = new Vector2(0, 0);
+                    }
+                    else 
+                    {
+                        Mode = EState.MoveTo;
                     }
 
                     if (CanFly)
@@ -149,7 +156,12 @@ public class Enemy : MonoBehaviour
                         Move();
                     break;
                 }
-                Mode = EState.MoveTo;   // Move to last known player position
+            case EState.AttackPause:
+                if (AttackTimer < 0)
+                {
+                    AttackTimer = AttackFrequency * 0.5f;
+                    Mode = EState.Hunt;
+                }
                 break;
         } 
     }
@@ -218,6 +230,6 @@ public class Enemy : MonoBehaviour
         float dirY = Mathf.Sign(MoveToTarget.y - transform.position.y);
         float impulseY = dirY * MovementSpeed;
         RB.linearVelocity = new Vector2(impulseX, impulseY);
-        Debug.Log(impulseY + " Y");
+        // Debug.Log(impulseY + " Y");
     }
 }
