@@ -4,7 +4,7 @@ using UnityEngine;
 /*
  * 
  * How to use it my friends:
- * Weltenwechsel mit Swoosh
+ * Weltenwechsel mit Swoosh UND Fade
  * GameManager.Instance.SwitchWorld(false); // Rabenwelt
  * GameManager.Instance.SwitchWorld(true);  // Schwanenwelt
  * how to use it einzeln:
@@ -65,7 +65,28 @@ public class GameManager : MonoBehaviour
         sfxSource.PlayOneShot(clip);
     }
 
+    private bool isRavenWorld = false;
+    public bool IsRavenWorld => isRavenWorld;
+    
+    public void ToggleWorld()
+    {
+        isRavenWorld = !isRavenWorld;
+        SwitchWorld(isRavenWorld);
+    }
+
     public void SwitchWorld(bool toDark)
+    {
+        if (FadeManager.Instance != null)
+        {
+            FadeManager.Instance.FadeTransition(() => PerformWorldSwitch(toDark));
+        }
+        else
+        {
+            PerformWorldSwitch(toDark);
+        }
+    }
+
+    private void PerformWorldSwitch(bool toDark)
     {
         PlaySFX(swooshSound);
         
@@ -84,6 +105,5 @@ public class GameManager : MonoBehaviour
             Renderer objRender = obj.GetComponent<Renderer>();
             objRender.enabled = toDark;
         }
-        
     }
 }

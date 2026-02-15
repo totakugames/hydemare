@@ -22,14 +22,15 @@ public class PlayerController : MonoBehaviour
     private float PlayerMaxSpeed = 2.5f;
     [SerializeField]
     private float JumpMultiplier = 1.0f;
+    
+    [SerializeField] 
+    private StoryPanel storyPanel;
 
     private InputAction MoveLeft;
     private InputAction MoveRight;
     private InputAction SwitchMask;
     private InputAction Interact;
     private InputAction Jump;
-
-    private bool isRavenWorld = false;
 
     private bool canInteractWithCollectable = false;
     private bool canInteractWithBase = false;
@@ -93,8 +94,8 @@ public class PlayerController : MonoBehaviour
             }
         }
         
-
-        if (isRavenWorld)
+        // Check if we're in Raven world via GameManager
+        if (GM != null && GM.IsRavenWorld)
         {
             playerSanity.DrainSanity(PlayerDrainSanity);
         }
@@ -112,7 +113,6 @@ public class PlayerController : MonoBehaviour
                 ProcessPlayerMovement();
                 if (SwitchMask.IsPressed())
                 {
-                    isRavenWorld = !isRavenWorld;
                     MaskTimer = MaskingTime;
                     PlayerState = EPlayerState.SwitchingMask;
                 }
@@ -136,8 +136,18 @@ public class PlayerController : MonoBehaviour
                 MaskTimer -= Time.deltaTime;
                 if (MaskTimer < 0)
                 {
-                    GM.SwitchWorld(isRavenWorld);
-                    playerAnimator.SwitchWorld(!isRavenWorld);
+                    // Delegate world switching to GameManager
+                    if (GM != null)
+                    {
+                        GM.ToggleWorld();
+                    }
+                    
+                    // Update player animator
+                    if (playerAnimator != null && GM != null)
+                    {
+                        playerAnimator.SwitchWorld(!GM.IsRavenWorld);
+                    }
+                    
                     PlayerState = EPlayerState.Moving;
                 }
                 break;
@@ -167,13 +177,6 @@ public class PlayerController : MonoBehaviour
 
         bool isGrounded = Mathf.Abs(RB.linearVelocity.y) < 0.01f;
         playerAnimator.SetGrounded(isGrounded);
-    }
-
-    void ChangeWorld()
-    {
-        isRavenWorld = !isRavenWorld;
-
-        Debug.Log("World Changed");
     }
 
     void SetupInputSystem()
@@ -276,17 +279,17 @@ public class PlayerController : MonoBehaviour
         interactable = null;
         canInteractWithCollectable = false;
         canInteractWithBase = false;
-
-        //Debug.Log("Available Item: None");
     }
 
     private void InteractWith()
     {
-        switch (interactable.gameObject.GetComponent<Collectable>().objectType)
+        Collectable collectableComponent = interactable.gameObject.GetComponent<Collectable>();
+        
+        switch (collectableComponent.objectType)
         {
             case Collect.Climb:
                 {
-                    ClimbStairs(interactable.gameObject.GetComponent<Collectable>().escalatorTargetPosition);
+                    ClimbStairs(collectableComponent.escalatorTargetPosition);
                     break;
                 }
             case Collect.Carry:
@@ -299,7 +302,14 @@ public class PlayerController : MonoBehaviour
                 }
             case Collect.Feather:
                 {
-                    GainHealth(interactable.gameObject.GetComponent<Collectable>().sanityGain);
+                    // Story Panel anzeigen wenn Text vorhanden
+                    if (!string.IsNullOrEmpty(collectableComponent.storyText) && storyPanel != null)
+                    {
+                        storyPanel.ShowStory(collectableComponent.storyText, transform);
+                    }
+                    
+                    // Sanity & Feather sammeln
+                    GainHealth(collectableComponent.sanityGain);
                     break;
                 }
             default: break;
