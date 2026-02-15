@@ -12,6 +12,12 @@ public class Collectable : MonoBehaviour
 
     [SerializeField]
     public Vector3 escalatorTargetPosition;
+
+    [Header("Story Settings (only for Feathers)")]
+    [SerializeField]
+    [TextArea(3, 10)] 
+    public string storyText = "";
+    
 }
 
 public enum Collect 
