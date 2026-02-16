@@ -34,6 +34,7 @@ public class PlayerController : MonoBehaviour
 
     private bool canInteractWithCollectable = false;
     private bool canInteractWithBase = false;
+    private bool canInteractWithStairs = false;
     private Collider2D interactable;
 
     private bool carrying = false;
@@ -122,14 +123,19 @@ public class PlayerController : MonoBehaviour
                 }
                 else if (Interact.IsPressed())
                 {
-                    if(canInteractWithCollectable && !carrying && PickedUpTimer < 0) {
-                        PickedUpTimer = PickedUpTimeout;
-                        InteractWith();
+                    if(canInteractWithCollectable && PickedUpTimer < 0) {
+                        if(!carrying ) {
+                            PickedUpTimer = PickedUpTimeout;
+                            InteractWith();
+                        }
                     } else if(canInteractWithBase && PickedUpTimer < 0) {
                         if (carrying) {
                             PickedUpTimer = PickedUpTimeout;
                             InteractWithOther();
                         }
+                    }  else if(canInteractWithStairs && PickedUpTimer < 0) {
+                        PickedUpTimer = PickedUpTimeout;
+                        ClimbStairs(interactable.GetComponent<Stairs>().escalatorTargetPosition);
                     } else if(carrying && PickedUpTimer < 0) {
                         PickedUpTimer = PickedUpTimeout;
                         DropItem();
@@ -278,7 +284,12 @@ public class PlayerController : MonoBehaviour
                 canInteractWithBase = true;
                 interactable = collider;
                 //Debug.Log("Available Base: " + interactable.gameObject.GetComponent<Base>().objectName);
-            }    
+            }   
+            else if(collider.gameObject.GetComponent<Stairs>()) {
+                canInteractWithStairs = true;
+                interactable = collider;
+                //Debug.Log("Available Stairs");
+            }  
         }
     }
 
@@ -287,6 +298,7 @@ public class PlayerController : MonoBehaviour
         interactable = null;
         canInteractWithCollectable = false;
         canInteractWithBase = false;
+        canInteractWithStairs = false;
     }
 
     private void InteractWith()
@@ -295,11 +307,6 @@ public class PlayerController : MonoBehaviour
         
         switch (collectableComponent.objectType)
         {
-            case Collect.Climb:
-                {
-                    ClimbStairs(collectableComponent.escalatorTargetPosition);
-                    break;
-                }
             case Collect.Carry:
                 {
                     if (!carrying)
@@ -328,19 +335,19 @@ public class PlayerController : MonoBehaviour
 
     private void InteractWithOther() {
         Base isBase = interactable.gameObject.GetComponent<Base>();
+
         if(isBase) {
             if(!isBase.neededItems.Contains(inventory.collectable.objectName)) {
-            Debug.Log("This doesn't fit here.");
+                // Debug.Log("This doesn't fit here.");
 
-            if (!string.IsNullOrEmpty(isBase.failureStory) && storyPanel != null)
-            {
-                storyPanel.ShowStory(isBase.failureStory, transform);
-            }
-            
-            DropItem();
+                if (!string.IsNullOrEmpty(isBase.failureStory) && storyPanel != null) {
+                    storyPanel.ShowStory(isBase.failureStory, transform);
+                }
+                
+                DropItem();
             }
         } else {    
-            Debug.Log(inventory.collectable.objectName + " used!");
+            // Debug.Log(inventory.collectable.objectName + " used!");
 
             interactable.gameObject.GetComponent<Base>().ConsumeItem(inventory.collectable.objectName);
             inventory = null;
@@ -350,7 +357,5 @@ public class PlayerController : MonoBehaviour
 
     private void ClimbStairs(Vector3 targetPosition) {
         transform.position = targetPosition;
-
-        // wip
     }
 }

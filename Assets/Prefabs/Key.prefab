@@ -108,6 +108,8 @@ MonoBehaviour:
   objectName: Key
   objectType: 1
   sanityGain: 0
+  escalatorTargetPosition: {x: 0, y: 0, z: 0}
+  storyText: 
 --- !u!58 &1452821622233649800
 CircleCollider2D:
   m_ObjectHideFlags: 0

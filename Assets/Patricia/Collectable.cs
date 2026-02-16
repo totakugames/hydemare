@@ -10,9 +10,6 @@ public class Collectable : MonoBehaviour
     [SerializeField]    
     public float sanityGain = 0f;
 
-    [SerializeField]
-    public Vector3 escalatorTargetPosition;
-
     [Header("Story Settings (only for Feathers)")]
     [SerializeField]
     [TextArea(3, 10)] 
@@ -23,8 +20,7 @@ public class Collectable : MonoBehaviour
 public enum Collect 
 {
     Feather,
-    Carry,
-    Climb
+    Carry
 }
 
 public class CollectableSnapshot 
