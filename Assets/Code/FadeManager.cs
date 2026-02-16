@@ -8,7 +8,7 @@ public class FadeManager : MonoBehaviour
 
     [Header("Fade Settings")]
     [SerializeField] private Image fadeImage;
-    [SerializeField] private float fadeDuration = 1f;
+    [SerializeField] private float fadeDuration = .3f;
     [SerializeField] private Color fadeColor = Color.black;
 
     private Coroutine currentFadeCoroutine;
