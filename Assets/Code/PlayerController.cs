@@ -135,7 +135,7 @@ public class PlayerController : MonoBehaviour
                         }
                     }  else if(canInteractWithStairs && PickedUpTimer < 0) {
                         PickedUpTimer = PickedUpTimeout;
-                        ClimbStairs(interactable.GetComponent<Stairs>().escalatorTargetPosition);
+                        ClimbStairs();
                     } else if(carrying && PickedUpTimer < 0) {
                         PickedUpTimer = PickedUpTimeout;
                         DropItem();
@@ -355,7 +355,16 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void ClimbStairs(Vector3 targetPosition) {
-        transform.position = targetPosition;
+    private void ClimbStairs() {
+        switch (interactable.GetComponent<Stairs>().objectType)
+        {
+            case Climb.Stairs:
+                transform.position = interactable.GetComponent<Stairs>().stairTargetPosition;
+                break;
+            case Climb.Ladder:
+                transform.position = interactable.GetComponent<Stairs>().ladderTargetObject.transform.position;
+                break;
+            default: break;
+        }
     }
 }
