@@ -7,10 +7,13 @@ public class MainMenuUI : MonoBehaviour
     private GameObject MainMenu;
     [SerializeField]
     private GameObject CreditsMenu;
+    [SerializeField]
+    private GameObject TutorialMenu;
 
     public void OnBtnPlay()
     {
-        SceneManager.LoadScene("finalLevel");
+        MainMenu.SetActive(false);
+        TutorialMenu.SetActive(true);
     }
 
     public void OnBtnCredits()
@@ -32,5 +35,10 @@ public class MainMenuUI : MonoBehaviour
     {
         CreditsMenu.SetActive(false);
         MainMenu.SetActive(true);
+    }
+
+    public void OnPlay()
+    {
+        SceneManager.LoadScene("finalLevel");
     }
 }
