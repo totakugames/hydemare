@@ -631,7 +631,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &410318487
 RectTransform:
   m_ObjectHideFlags: 0
@@ -990,11 +990,19 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Movement [WASD]
+  m_text: 'Collect all 6 feathers to complete the story.
+
+    Switch your Mask in
+    order to change the World and discover new objects. But be careful! The Raven
+    world drains your sanity!
+
+
+    Movement [WASD]
 
     Switch Mask [M]
 
-    Interact [Space]
+    Interact
+    [Space]
 
     Menu [ESC]'
   m_isRightToLeft: 0
@@ -1036,7 +1044,7 @@ MonoBehaviour:
   m_characterSpacing: 0
   m_characterHorizontalScale: 1
   m_wordSpacing: 0
-  m_lineSpacing: 150
+  m_lineSpacing: 0
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
