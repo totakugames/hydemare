@@ -30,7 +30,7 @@ public class Enemy : MonoBehaviour
     private float AttackFrequency = 3.0f;
     private float AttackTimer;
     [SerializeField]
-    private float AttackRange = 0.2f;
+    private float AttackRange = 0.325f;
     [SerializeField]
     private float AttackDamage = 5.0f;
     

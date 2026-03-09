@@ -25,6 +25,11 @@ public class HudManager : MonoBehaviour
     private bool Blink;
     private bool HealBlink;
     private float BlinkTimer;
+    private float BlinkDamageThreshold = 0.04f;
+
+    private float LastSanityPercentage = 1.0f;
+
+    private int ActiveSanity = 0;
 
     public void Start() 
     {
@@ -35,29 +40,83 @@ public class HudManager : MonoBehaviour
 
     public void Update() 
     {
+        BlinkTimer -= Time.deltaTime;
+        if (Blink && BlinkTimer < 0)
+        {
+            Blink = false;
+            SetSanityColor(Color.white);
+
+            foreach (GameObject obj in SanityBarLevels)
+            {
+                obj.SetActive(false);
+            }
+
+            SanityBarLevels[ActiveSanity].SetActive(true);
+        }
+
         if (Blink)
         {
-            // get blink color
-            // Get blink timer
+            if (HealBlink)
+            {
+                SetSanityColor(Color.green);
+            }
+            else
+            {
+                SetSanityColor(Color.softRed);
+            }
+
+            bool visible = (int)(BlinkTimer / BlinkInterval) % 2 == 1;
+
+            
+            foreach (GameObject obj in SanityBarLevels)
+            {
+                obj.SetActive(false);
+            }
+            SanityBarLevels[ActiveSanity].SetActive(visible);
+           
         }
     }
-
+    
     public void SetSanityBar(float percentage)
     {
-        Blink = true;
-        if (percentage < CurrentPercentage) 
-            HealBlink = false;
-        else
-            HealBlink = true;
-        
-        int filling = (int)Mathf.Round((SanityBarLevels.Count - 1) * percentage);
-        
-        foreach (GameObject obj in SanityBarLevels)
+        float delta = LastSanityPercentage - percentage;
+        if (Mathf.Abs(delta) >= BlinkDamageThreshold)
         {
-            obj.SetActive(false);
+            Blink = true;
+            if (delta > 0)
+                HealBlink = false;
+            else
+                HealBlink = true;
+            BlinkTimer = BlinkDuration;
+        }
+       
+        
+        ActiveSanity = (SanityBarLevels.Count - 1) - (int)Mathf.Round((SanityBarLevels.Count - 1) * (1 - percentage));
+
+
+        if (GetCurrentSanity() != ActiveSanity)
+        {
+            foreach (GameObject obj in SanityBarLevels)
+            {
+                obj.SetActive(false);
+            }
+
+            SanityBarLevels[ActiveSanity].SetActive(true);
         }
 
-        SanityBarLevels[filling].SetActive(true);
+        LastSanityPercentage = percentage;
+    }
+
+    private int GetCurrentSanity()
+    {
+        for(int i = 0; i < SanityBarLevels.Count; i++)
+        {
+            if (SanityBarLevels[i].active)
+            {
+                return i;
+            }
+        }
+        return -1;
     }
 
     public void SetMask(bool toRaven)
@@ -85,6 +144,15 @@ public class HudManager : MonoBehaviour
                 Feathers[i].SetActive(true);
             else 
                 Feathers[i].SetActive(false);
+        }
+    }
+
+    private void SetSanityColor(Color color)
+    {
+        foreach (GameObject obj in SanityBarLevels)
+        {
+            Image img = obj.GetComponent<Image>();
+            img.color = color;
         }
     }
 }
