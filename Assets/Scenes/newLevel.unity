@@ -343,89 +343,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 44472045ac090b286aa6ca5c7da0e6e0, type: 3}
---- !u!1001 &133468343
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 878199135204800134, guid: f4a78d53cd4214c4aa91588614c5d960, type: 3}
-      propertyPath: m_Name
-      value: Feather (4)
-      objectReference: {fileID: 0}
-    - target: {fileID: 878199135204800134, guid: f4a78d53cd4214c4aa91588614c5d960, type: 3}
-      propertyPath: m_TagString
-      value: Raven
-      objectReference: {fileID: 0}
-    - target: {fileID: 2307552342322308887, guid: f4a78d53cd4214c4aa91588614c5d960, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.09398608
-      objectReference: {fileID: 0}
-    - target: {fileID: 2307552342322308887, guid: f4a78d53cd4214c4aa91588614c5d960, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.09398608
-      objectReference: {fileID: 0}
-    - target: {fileID: 2307552342322308887, guid: f4a78d53cd4214c4aa91588614c5d960, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.09398608
-      objectReference: {fileID: 0}
-    - target: {fileID: 2307552342322308887, guid: f4a78d53cd4214c4aa91588614c5d960, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 1.9
-      objectReference: {fileID: 0}
-    - target: {fileID: 2307552342322308887, guid: f4a78d53cd4214c4aa91588614c5d960, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -7.62
-      objectReference: {fileID: 0}
-    - target: {fileID: 2307552342322308887, guid: f4a78d53cd4214c4aa91588614c5d960, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2307552342322308887, guid: f4a78d53cd4214c4aa91588614c5d960, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2307552342322308887, guid: f4a78d53cd4214c4aa91588614c5d960, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2307552342322308887, guid: f4a78d53cd4214c4aa91588614c5d960, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2307552342322308887, guid: f4a78d53cd4214c4aa91588614c5d960, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2307552342322308887, guid: f4a78d53cd4214c4aa91588614c5d960, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2307552342322308887, guid: f4a78d53cd4214c4aa91588614c5d960, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2307552342322308887, guid: f4a78d53cd4214c4aa91588614c5d960, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5983720540098651393, guid: f4a78d53cd4214c4aa91588614c5d960, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6578199686442693858, guid: f4a78d53cd4214c4aa91588614c5d960, type: 3}
-      propertyPath: storyText
-      value: "Das Rabenherz hungerte nach dem Schwan. Seine Gabe war Ungl\xFCck,
-        um als schlechtes Omen des Schwanen Antlitz erblicken zu k\xF6nnen. Schlie\xDFlich
-        entschied der Galgenvogel, aus Liebe f\xFCr immer zu verzichten."
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: f4a78d53cd4214c4aa91588614c5d960, type: 3}
 --- !u!1 &140202642
 GameObject:
   m_ObjectHideFlags: 0
@@ -726,7 +643,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 23.527678, y: 16.382114}
+  m_Offset: {x: 23.527678, y: 18.895315}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -736,7 +653,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 48.055355, y: 1.3029938}
+  m_Size: {x: 48.055355, y: 0.42629623}
   m_EdgeRadius: 0
 --- !u!61 &258345522
 BoxCollider2D:
@@ -772,7 +689,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 47.19329, y: 7.8446465}
+  m_Offset: {x: 47.19329, y: 9.159693}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -782,7 +699,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.9383087, y: 16.689293}
+  m_Size: {x: 0.9383087, y: 19.319386}
   m_EdgeRadius: 0
 --- !u!61 &258345523
 BoxCollider2D:
@@ -818,7 +735,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.20682907, y: 8.012777}
+  m_Offset: {x: -0.20682907, y: 9.137873}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -828,7 +745,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.58634186, y: 17.025555}
+  m_Size: {x: 0.58634186, y: 19.275745}
   m_EdgeRadius: 0
 --- !u!61 &258345524
 BoxCollider2D:
@@ -1142,6 +1059,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3201092656659499486, guid: 63174eb1622fd500aafc6cee6d547151, type: 3}
+      propertyPath: m_MaskInteraction
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6457738510555264329, guid: 63174eb1622fd500aafc6cee6d547151, type: 3}
       propertyPath: m_LocalPosition.x
       value: 14
@@ -1185,6 +1106,10 @@ PrefabInstance:
     - target: {fileID: 7164451668225099855, guid: 63174eb1622fd500aafc6cee6d547151, type: 3}
       propertyPath: m_Name
       value: FloatingPlatform (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 9012953167412499618, guid: 63174eb1622fd500aafc6cee6d547151, type: 3}
+      propertyPath: m_ExcludeLayers.m_Bits
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1496,6 +1421,10 @@ PrefabInstance:
       value: Feather (5)
       objectReference: {fileID: 0}
     - target: {fileID: 878199135204800134, guid: f4a78d53cd4214c4aa91588614c5d960, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 878199135204800134, guid: f4a78d53cd4214c4aa91588614c5d960, type: 3}
       propertyPath: m_TagString
       value: Raven
       objectReference: {fileID: 0}
@@ -1557,9 +1486,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6578199686442693858, guid: f4a78d53cd4214c4aa91588614c5d960, type: 3}
       propertyPath: storyText
-      value: "Das Rabenherz hungerte nach dem Schwan. Seine Gabe war Ungl\xFCck,
-        um als schlechtes Omen des Schwanen Antlitz erblicken zu k\xF6nnen. Schlie\xDFlich
-        entschied der Galgenvogel, aus Liebe f\xFCr immer zu verzichten."
+      value: "Der stolze Schwan kennt nur die Schwanenwelt, der Rabe die Rabenwelt.
+        So konnte der wei\xDFe Schwimmende den schwarzen Fliegenden nie erblicken,
+        aber er war entz\xFCckt von seinem Kr\xE4chzen. Es war ihm Trost im Ungl\xFCck,
+        das der Rabe brachte."
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1820,9 +1750,17 @@ PrefabInstance:
       propertyPath: IdleBoxLimiterRight
       value: 
       objectReference: {fileID: 1076849246}
+    - target: {fileID: 4891942891356952626, guid: f9cf2b1d4b154ee44a224c877f64d707, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 4928782201523231141, guid: f9cf2b1d4b154ee44a224c877f64d707, type: 3}
       propertyPath: m_Name
       value: FlyingEnemy (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4928782201523231141, guid: f9cf2b1d4b154ee44a224c877f64d707, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 5420507314506438259, guid: f9cf2b1d4b154ee44a224c877f64d707, type: 3}
       propertyPath: m_Enabled
@@ -2481,9 +2419,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6578199686442693858, guid: f4a78d53cd4214c4aa91588614c5d960, type: 3}
       propertyPath: storyText
-      value: "Das Rabenherz hungerte nach dem Schwan. Seine Gabe war Ungl\xFCck,
-        um als schlechtes Omen des Schwanen Antlitz erblicken zu k\xF6nnen. Schlie\xDFlich
-        entschied der Galgenvogel, aus Liebe f\xFCr immer zu verzichten."
+      value: "Der Maskenbildner hatte ein kr\xE4nkliches Kind, bekleidet mit einer
+        blutroten Robe. Die erleuchtende Maske sollte Heilung bringen. Sie konnte
+        nur aus f\xFCnf rotspitzigen Schwanenfedern kreiert werden."
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2716,9 +2654,17 @@ PrefabInstance:
       propertyPath: IdleBoxLimiterRight
       value: 
       objectReference: {fileID: 1525804598}
+    - target: {fileID: 4891942891356952626, guid: f9cf2b1d4b154ee44a224c877f64d707, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 4928782201523231141, guid: f9cf2b1d4b154ee44a224c877f64d707, type: 3}
       propertyPath: m_Name
       value: FlyingEnemy (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4928782201523231141, guid: f9cf2b1d4b154ee44a224c877f64d707, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 5420507314506438259, guid: f9cf2b1d4b154ee44a224c877f64d707, type: 3}
       propertyPath: m_Enabled
@@ -2796,6 +2742,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Statue
       objectReference: {fileID: 0}
+    - target: {fileID: 2705422109678299500, guid: 581c52bfe8fdb7d4cb1fc854fd135b87, type: 3}
+      propertyPath: storyPanel
+      value: 
+      objectReference: {fileID: 926689435}
     - target: {fileID: 5652289515007855581, guid: 581c52bfe8fdb7d4cb1fc854fd135b87, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.72
@@ -2836,6 +2786,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8236915000521122162, guid: 581c52bfe8fdb7d4cb1fc854fd135b87, type: 3}
+      propertyPath: storyPanel
+      value: 
+      objectReference: {fileID: 926689435}
+    - target: {fileID: 8236915000521122162, guid: 581c52bfe8fdb7d4cb1fc854fd135b87, type: 3}
+      propertyPath: spawnPrefab
+      value: 
+      objectReference: {fileID: 4808479912178797452, guid: 6cbaf5484cc11ac4c8482db1102a16ea, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3244,6 +3202,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 926689435}
     - target: {fileID: -6546722828498899262, guid: f39902dd8142a06489e323bddfefb0ee, type: 3}
+      propertyPath: spawnPrefab
+      value: 
+      objectReference: {fileID: 5873117042940991673, guid: fe6af339c845b8146a2ffb207fae3c8b, type: 3}
+    - target: {fileID: -6546722828498899262, guid: f39902dd8142a06489e323bddfefb0ee, type: 3}
       propertyPath: successStory
       value: "Der Schl\xFCssel quietscht im Schloss, dann \xF6ffnet die Truhe sich
         knarrend. Darin liegt ein Diamant, der irgendwie matt aussieht."
@@ -3650,7 +3612,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 855026531680212373, guid: e4cc3c2882da93244993f130ee523080, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -2
       objectReference: {fileID: 0}
     - target: {fileID: 855026531680212373, guid: e4cc3c2882da93244993f130ee523080, type: 3}
       propertyPath: m_LocalRotation.w
@@ -3680,9 +3642,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2019594715199187133, guid: e4cc3c2882da93244993f130ee523080, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 5342774146247035854, guid: e4cc3c2882da93244993f130ee523080, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 5342774146247035854, guid: e4cc3c2882da93244993f130ee523080, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 5894089491272405108, guid: e4cc3c2882da93244993f130ee523080, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 6221372109209525639, guid: e4cc3c2882da93244993f130ee523080, type: 3}
       propertyPath: ES
@@ -3692,6 +3666,10 @@ PrefabInstance:
       propertyPath: GM
       value: 
       objectReference: {fileID: 538754075}
+    - target: {fileID: 6221372109209525639, guid: e4cc3c2882da93244993f130ee523080, type: 3}
+      propertyPath: ceiling
+      value: 
+      objectReference: {fileID: 1906222293}
     - target: {fileID: 6221372109209525639, guid: e4cc3c2882da93244993f130ee523080, type: 3}
       propertyPath: storyPanel
       value: 
@@ -3756,6 +3734,10 @@ PrefabInstance:
       propertyPath: storyPanel
       value: 
       objectReference: {fileID: 926689435}
+    - target: {fileID: -6546722828498899262, guid: f39902dd8142a06489e323bddfefb0ee, type: 3}
+      propertyPath: spawnPrefab
+      value: 
+      objectReference: {fileID: 910141820279263126, guid: 563c283a4595785418fbb14020e89342, type: 3}
     - target: {fileID: 1841972624379821680, guid: f39902dd8142a06489e323bddfefb0ee, type: 3}
       propertyPath: m_Enabled
       value: 1
@@ -3913,83 +3895,6 @@ PrefabInstance:
       addedObject: {fileID: 18751690}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 63174eb1622fd500aafc6cee6d547151, type: 3}
---- !u!1001 &1493491808
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 5914068189328273574, guid: 1d016ad03c283af4fa43ac0a1e9c4d17, type: 3}
-      propertyPath: m_Name
-      value: Diamond_Fake_2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5914068189328273574, guid: 1d016ad03c283af4fa43ac0a1e9c4d17, type: 3}
-      propertyPath: m_TagString
-      value: Raven
-      objectReference: {fileID: 0}
-    - target: {fileID: 6825008212887290492, guid: 1d016ad03c283af4fa43ac0a1e9c4d17, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.12688299
-      objectReference: {fileID: 0}
-    - target: {fileID: 6825008212887290492, guid: 1d016ad03c283af4fa43ac0a1e9c4d17, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.12688299
-      objectReference: {fileID: 0}
-    - target: {fileID: 6825008212887290492, guid: 1d016ad03c283af4fa43ac0a1e9c4d17, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.12688299
-      objectReference: {fileID: 0}
-    - target: {fileID: 6825008212887290492, guid: 1d016ad03c283af4fa43ac0a1e9c4d17, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -0.22
-      objectReference: {fileID: 0}
-    - target: {fileID: 6825008212887290492, guid: 1d016ad03c283af4fa43ac0a1e9c4d17, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -8.4
-      objectReference: {fileID: 0}
-    - target: {fileID: 6825008212887290492, guid: 1d016ad03c283af4fa43ac0a1e9c4d17, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6825008212887290492, guid: 1d016ad03c283af4fa43ac0a1e9c4d17, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6825008212887290492, guid: 1d016ad03c283af4fa43ac0a1e9c4d17, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6825008212887290492, guid: 1d016ad03c283af4fa43ac0a1e9c4d17, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6825008212887290492, guid: 1d016ad03c283af4fa43ac0a1e9c4d17, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6825008212887290492, guid: 1d016ad03c283af4fa43ac0a1e9c4d17, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6825008212887290492, guid: 1d016ad03c283af4fa43ac0a1e9c4d17, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6825008212887290492, guid: 1d016ad03c283af4fa43ac0a1e9c4d17, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7205544580447120391, guid: 1d016ad03c283af4fa43ac0a1e9c4d17, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 1d016ad03c283af4fa43ac0a1e9c4d17, type: 3}
 --- !u!1 &1521001316
 GameObject:
   m_ObjectHideFlags: 0
@@ -4225,9 +4130,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6578199686442693858, guid: f4a78d53cd4214c4aa91588614c5d960, type: 3}
       propertyPath: storyText
-      value: "Das Rabenherz hungerte nach dem Schwan. Seine Gabe war Ungl\xFCck,
-        um als schlechtes Omen des Schwanen Antlitz erblicken zu k\xF6nnen. Schlie\xDFlich
-        entschied der Galgenvogel, aus Liebe f\xFCr immer zu verzichten."
+      value: "Das Formen der zwei Masken brachte Krankheit \xFCber den Maskenbildner.
+        Das kr\xE4nkliche Kind in der blutroten Robe musste nun nicht nur sich selbst
+        erl\xF6sen."
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -4385,9 +4290,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6578199686442693858, guid: f4a78d53cd4214c4aa91588614c5d960, type: 3}
       propertyPath: storyText
-      value: "Das Rabenherz hungerte nach dem Schwan. Seine Gabe war Ungl\xFCck,
-        um als schlechtes Omen des Schwanen Antlitz erblicken zu k\xF6nnen. Schlie\xDFlich
-        entschied der Galgenvogel, aus Liebe f\xFCr immer zu verzichten."
+      value: "Manchmal erf\xE4hrt man erst sp\xE4t, welche schrecklichen Opfer f\xFCr
+        einen erbracht wurden. Der Maskenbildner musste den Tod des gebrochenen Rabens
+        und des sch\xF6nen Schwans heraufbeschw\xF6ren, um die Masken zu formen."
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -4512,7 +4417,7 @@ BoxCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 0
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -4553,7 +4458,7 @@ PlatformEffector2D:
   m_UseColliderMask: 1
   m_ColliderMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 127
   m_RotationalOffset: 0
   m_UseOneWay: 1
   m_UseOneWayGrouping: 0
@@ -5033,6 +4938,63 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &668282228190878858
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 5873117042940991673, guid: fe6af339c845b8146a2ffb207fae3c8b, type: 3}
+      propertyPath: m_Name
+      value: Diamond_Fake_2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7209615502766379357, guid: fe6af339c845b8146a2ffb207fae3c8b, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.22
+      objectReference: {fileID: 0}
+    - target: {fileID: 7209615502766379357, guid: fe6af339c845b8146a2ffb207fae3c8b, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -8.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7209615502766379357, guid: fe6af339c845b8146a2ffb207fae3c8b, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7209615502766379357, guid: fe6af339c845b8146a2ffb207fae3c8b, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7209615502766379357, guid: fe6af339c845b8146a2ffb207fae3c8b, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7209615502766379357, guid: fe6af339c845b8146a2ffb207fae3c8b, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7209615502766379357, guid: fe6af339c845b8146a2ffb207fae3c8b, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7209615502766379357, guid: fe6af339c845b8146a2ffb207fae3c8b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7209615502766379357, guid: fe6af339c845b8146a2ffb207fae3c8b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7209615502766379357, guid: fe6af339c845b8146a2ffb207fae3c8b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: fe6af339c845b8146a2ffb207fae3c8b, type: 3}
 --- !u!1001 &2165091938847112737
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5163,6 +5125,120 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 247c0e2eb495c5056b74966561547022, type: 3}
+--- !u!1001 &4427660294883630242
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 910141820279263126, guid: 563c283a4595785418fbb14020e89342, type: 3}
+      propertyPath: m_Name
+      value: Feather (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8686139695580961655, guid: 563c283a4595785418fbb14020e89342, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 8686139695580961655, guid: 563c283a4595785418fbb14020e89342, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -7.62
+      objectReference: {fileID: 0}
+    - target: {fileID: 8686139695580961655, guid: 563c283a4595785418fbb14020e89342, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8686139695580961655, guid: 563c283a4595785418fbb14020e89342, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8686139695580961655, guid: 563c283a4595785418fbb14020e89342, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8686139695580961655, guid: 563c283a4595785418fbb14020e89342, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8686139695580961655, guid: 563c283a4595785418fbb14020e89342, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8686139695580961655, guid: 563c283a4595785418fbb14020e89342, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8686139695580961655, guid: 563c283a4595785418fbb14020e89342, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8686139695580961655, guid: 563c283a4595785418fbb14020e89342, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 563c283a4595785418fbb14020e89342, type: 3}
+--- !u!1001 &5684244647756588880
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3371114568097378488, guid: 6cbaf5484cc11ac4c8482db1102a16ea, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -2.6100001
+      objectReference: {fileID: 0}
+    - target: {fileID: 3371114568097378488, guid: 6cbaf5484cc11ac4c8482db1102a16ea, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -7.5143156
+      objectReference: {fileID: 0}
+    - target: {fileID: 3371114568097378488, guid: 6cbaf5484cc11ac4c8482db1102a16ea, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3371114568097378488, guid: 6cbaf5484cc11ac4c8482db1102a16ea, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3371114568097378488, guid: 6cbaf5484cc11ac4c8482db1102a16ea, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3371114568097378488, guid: 6cbaf5484cc11ac4c8482db1102a16ea, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3371114568097378488, guid: 6cbaf5484cc11ac4c8482db1102a16ea, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3371114568097378488, guid: 6cbaf5484cc11ac4c8482db1102a16ea, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3371114568097378488, guid: 6cbaf5484cc11ac4c8482db1102a16ea, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3371114568097378488, guid: 6cbaf5484cc11ac4c8482db1102a16ea, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4808479912178797452, guid: 6cbaf5484cc11ac4c8482db1102a16ea, type: 3}
+      propertyPath: m_Name
+      value: Key
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 6cbaf5484cc11ac4c8482db1102a16ea, type: 3}
 --- !u!1001 &6534355953343323863
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5273,11 +5349,12 @@ SceneRoots:
   - {fileID: 1123224552}
   - {fileID: 1798046344}
   - {fileID: 1525804599}
+  - {fileID: 5684244647756588880}
   - {fileID: 866923151}
-  - {fileID: 1493491808}
-  - {fileID: 1521977600}
-  - {fileID: 133468343}
+  - {fileID: 668282228190878858}
   - {fileID: 1718636945}
+  - {fileID: 1521977600}
+  - {fileID: 4427660294883630242}
   - {fileID: 1463208590}
   - {fileID: 1367743840}
   - {fileID: 1223569805}
