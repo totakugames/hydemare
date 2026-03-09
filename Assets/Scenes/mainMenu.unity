@@ -631,7 +631,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &410318487
 RectTransform:
   m_ObjectHideFlags: 0
@@ -992,8 +992,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Collect all 6 feathers to complete the story.
 
-    Switch your Mask in
-    order to change the World and discover new objects. But be careful! The Raven
+    Switch your mask in
+    order to change the world and discover new objects. But be careful! The raven
     world drains your sanity!
 
 
