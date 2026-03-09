@@ -42,20 +42,20 @@ Material:
     m_Ints: []
     m_Floats:
     - _EnableExternalAlpha: 0
-    - _PulseAmount: 0.266
-    - _PulseSpeed: 0.61
-    - _RayCount: 103
-    - _RayIntensity: 0.41
-    - _RayLength: 0.113
-    - _RaySharpness: 1
-    - _RayVariation: 0.281
-    - _RayWidth: 0.98
-    - _VignetteIntensity: 0.42
-    - _VignetteRadius: 0.47
-    - _VignetteSoftness: 0.35
-    - _WaveAmplitude: 0
-    - _WaveFrequency: 12.6
-    - _WaveSpeed: 3.09
+    - _PulseAmount: 0.116
+    - _PulseSpeed: 1.95
+    - _RayCount: 93.7
+    - _RayIntensity: 0.346
+    - _RayLength: 0.308
+    - _RaySharpness: 7.8
+    - _RayVariation: 0.113
+    - _RayWidth: 0.74
+    - _VignetteIntensity: 0.218
+    - _VignetteRadius: 0.226
+    - _VignetteSoftness: 0.807
+    - _WaveAmplitude: 0.206
+    - _WaveFrequency: 4.5
+    - _WaveSpeed: 7.45
     - _ZWrite: 0
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}

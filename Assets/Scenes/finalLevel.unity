@@ -1898,10 +1898,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: EndingScreen
       objectReference: {fileID: 0}
-    - target: {fileID: 6503791550760988380, guid: 5cd014706699cb9ceb610186d779ef08, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

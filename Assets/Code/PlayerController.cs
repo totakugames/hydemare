@@ -1,10 +1,14 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.VFX;
 
 public class PlayerController : MonoBehaviour
 {
     [SerializeField]
     private GameObject respawnPrefab;
+
+    [SerializeField]
+    private PoofController Poof;
 
     [SerializeField]
     private float PlayerMaxSanity = 100f;
@@ -235,6 +239,7 @@ public class PlayerController : MonoBehaviour
     public void DealDamage(float damage)
     {
         playerSanity.LoseSanity(damage);
+        Poof.Animate();
     }
 
     public void CarryItem()
