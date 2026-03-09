@@ -36,10 +36,10 @@ public class CollectableSnapshot
     public CollectableSnapshot(GameObject obj) {
         collectable = obj.GetComponent<Collectable>();
         rotation = obj.transform.rotation;
-        scale = obj.transform.localScale;
+        scale = obj.transform.lossyScale;
         sprite = obj.GetComponent<SpriteRenderer>().sprite;
     }
-
+    
     public Collectable collectable;
 
     public Quaternion rotation;

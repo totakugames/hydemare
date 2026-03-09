@@ -69,6 +69,9 @@ public class PlayerController : MonoBehaviour
     private GameObject ES;
     private bool EndingScreenShown = false;
 
+    [SerializeField]
+    private PlatformEffector2D ceiling;
+
     void Start()
     {
         RB = GetComponent<Rigidbody2D>();
@@ -263,6 +266,8 @@ public class PlayerController : MonoBehaviour
 
         spawn.transform.localScale = inventory.scale;
 
+        spawn.transform.position = new Vector3(spawn.transform.position.x, spawn.transform.position.y, -1);
+
         SpriteRenderer sr = spawn.GetComponent<SpriteRenderer>();
         sr.sprite = inventory.sprite;
         Collectable col = spawn.GetComponent<Collectable>();
@@ -300,10 +305,12 @@ public class PlayerController : MonoBehaviour
 
     void OnTriggerExit2D(Collider2D collectable)
     {
-        interactable = null;
-        canInteractWithCollectable = false;
-        canInteractWithBase = false;
-        canInteractWithStairs = false;
+        if (!collectable.gameObject.name.Contains("Enemy")) {
+            interactable = null;
+            canInteractWithCollectable = false;
+            canInteractWithBase = false;
+            canInteractWithStairs = false;
+        }
     }
 
     private void InteractWith()
@@ -351,23 +358,38 @@ public class PlayerController : MonoBehaviour
                 
                 DropItem();
             }
-        } else {    
-            // Debug.Log(inventory.collectable.objectName + " used!");
+            else
+            {
+                // Debug.Log(inventory.collectable.objectName + " used!");
 
-            interactable.gameObject.GetComponent<Base>().ConsumeItem(inventory.collectable.objectName);
-            inventory = null;
-            carrying = false;
-        }
+                interactable.gameObject.GetComponent<Base>().ConsumeItem(inventory.collectable.objectName);
+                inventory = null;
+                carrying = false;
+
+                HM.ClearHeldItem();
+            }
+        } 
     }
 
     private void ClimbStairs() {
         switch (interactable.GetComponent<Stairs>().objectType)
         {
             case Climb.Stairs:
+                if (interactable.GetComponent<Stairs>().stairTargetPosition.y >= transform.position.y)
+                {
+                    ceiling.colliderMask = ~LayerMask.GetMask("");
+                }
+                else
+                {
+                    ceiling.colliderMask = ~LayerMask.GetMask("Player");
+                }
+
                 transform.position = interactable.GetComponent<Stairs>().stairTargetPosition;
+                transform.position = new Vector3(transform.position.x, transform.position.y, -2);
                 break;
             case Climb.Ladder:
                 transform.position = interactable.GetComponent<Stairs>().ladderTargetObject.transform.position;
+                transform.position = new Vector3(transform.position.x, transform.position.y, -2);
                 break;
             default: break;
         }
