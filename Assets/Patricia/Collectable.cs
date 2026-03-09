@@ -15,6 +15,14 @@ public class Collectable : MonoBehaviour
     [TextArea(3, 10)] 
     public string storyText = "";
     
+    void Start() {
+        GameManager gm = GameObject.FindObjectOfType<GameManager>();
+
+        if (!gm.IsRavenWorld)
+        {
+            GetComponent<SpriteRenderer>().enabled = false;
+        }        
+    }
 }
 
 public enum Collect 

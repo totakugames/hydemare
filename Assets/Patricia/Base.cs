@@ -24,6 +24,11 @@ public class Base : MonoBehaviour
         remainingItems = new List<string>(neededItems);
     }
 
+    void Start() 
+    {
+        GetComponent<SpriteRenderer>().enabled = false;
+    }
+
     public void ConsumeItem(string itemName) 
     {
         if (remainingItems.Contains(itemName)) {

@@ -9,6 +9,10 @@ public class FloatingPlatform : MonoBehaviour
     [SerializeField]
     private GameObject Platform;
 
+    void Start() {
+        Platform.GetComponent<SpriteRenderer>().enabled = false;
+    }
+
     // Update is called once per frame
     void FixedUpdate()
     {
