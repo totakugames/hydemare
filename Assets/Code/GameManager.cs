@@ -48,6 +48,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         PlayMusic(swanWorldMusic);
+        isRavenWorld = false;
     }
 
     public void PlayMusic(AudioClip clip)

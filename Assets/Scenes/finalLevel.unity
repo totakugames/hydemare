@@ -489,14 +489,6 @@ PrefabInstance:
     m_TransformParent: {fileID: 669155761}
     m_Modifications:
     - target: {fileID: 130152649613538624, guid: 33c77209ca8be0f42a541559c8dd93f7, type: 3}
-      propertyPath: AttackRange
-      value: 0.3
-      objectReference: {fileID: 0}
-    - target: {fileID: 130152649613538624, guid: 33c77209ca8be0f42a541559c8dd93f7, type: 3}
-      propertyPath: MovementSpeed
-      value: 1.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 130152649613538624, guid: 33c77209ca8be0f42a541559c8dd93f7, type: 3}
       propertyPath: IdleBoxLimiterLeft
       value: 
       objectReference: {fileID: 270814501}
@@ -1705,21 +1697,13 @@ PrefabInstance:
     m_TransformParent: {fileID: 669155761}
     m_Modifications:
     - target: {fileID: 130152649613538624, guid: 33c77209ca8be0f42a541559c8dd93f7, type: 3}
-      propertyPath: AttackRange
-      value: 0.3
-      objectReference: {fileID: 0}
-    - target: {fileID: 130152649613538624, guid: 33c77209ca8be0f42a541559c8dd93f7, type: 3}
-      propertyPath: MovementSpeed
-      value: 1.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 130152649613538624, guid: 33c77209ca8be0f42a541559c8dd93f7, type: 3}
       propertyPath: IdleBoxLimiterLeft
       value: 
-      objectReference: {fileID: 1081311529}
+      objectReference: {fileID: 478471084}
     - target: {fileID: 130152649613538624, guid: 33c77209ca8be0f42a541559c8dd93f7, type: 3}
       propertyPath: IdleBoxLimiterRight
       value: 
-      objectReference: {fileID: 478471084}
+      objectReference: {fileID: 1081311529}
     - target: {fileID: 3891144652196145540, guid: 33c77209ca8be0f42a541559c8dd93f7, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -1826,22 +1810,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2346224452711411904, guid: f9cf2b1d4b154ee44a224c877f64d707, type: 3}
-      propertyPath: m_Constraints
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 3158814371153963585, guid: f9cf2b1d4b154ee44a224c877f64d707, type: 3}
-      propertyPath: Debugging
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3158814371153963585, guid: f9cf2b1d4b154ee44a224c877f64d707, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3158814371153963585, guid: f9cf2b1d4b154ee44a224c877f64d707, type: 3}
-      propertyPath: AttackRange
-      value: 0.3
-      objectReference: {fileID: 0}
     - target: {fileID: 3158814371153963585, guid: f9cf2b1d4b154ee44a224c877f64d707, type: 3}
       propertyPath: IdleBoxLimiterLeft
       value: 
@@ -1865,18 +1833,6 @@ PrefabInstance:
     - target: {fileID: 5420507314506438259, guid: f9cf2b1d4b154ee44a224c877f64d707, type: 3}
       propertyPath: m_Enabled
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6389828374775776717, guid: f9cf2b1d4b154ee44a224c877f64d707, type: 3}
-      propertyPath: m_Size.y
-      value: 8.650228
-      objectReference: {fileID: 0}
-    - target: {fileID: 6389828374775776717, guid: f9cf2b1d4b154ee44a224c877f64d707, type: 3}
-      propertyPath: m_Offset.y
-      value: 0.327209
-      objectReference: {fileID: 0}
-    - target: {fileID: 6389828374775776717, guid: f9cf2b1d4b154ee44a224c877f64d707, type: 3}
-      propertyPath: m_ExcludeLayers.m_Bits
-      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 8315990684035554986, guid: f9cf2b1d4b154ee44a224c877f64d707, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2772,22 +2728,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2346224452711411904, guid: f9cf2b1d4b154ee44a224c877f64d707, type: 3}
-      propertyPath: m_Constraints
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 3158814371153963585, guid: f9cf2b1d4b154ee44a224c877f64d707, type: 3}
-      propertyPath: Debugging
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3158814371153963585, guid: f9cf2b1d4b154ee44a224c877f64d707, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3158814371153963585, guid: f9cf2b1d4b154ee44a224c877f64d707, type: 3}
-      propertyPath: AttackRange
-      value: 0.3
-      objectReference: {fileID: 0}
     - target: {fileID: 3158814371153963585, guid: f9cf2b1d4b154ee44a224c877f64d707, type: 3}
       propertyPath: IdleBoxLimiterLeft
       value: 
@@ -2811,18 +2751,6 @@ PrefabInstance:
     - target: {fileID: 5420507314506438259, guid: f9cf2b1d4b154ee44a224c877f64d707, type: 3}
       propertyPath: m_Enabled
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6389828374775776717, guid: f9cf2b1d4b154ee44a224c877f64d707, type: 3}
-      propertyPath: m_Size.y
-      value: 8.650228
-      objectReference: {fileID: 0}
-    - target: {fileID: 6389828374775776717, guid: f9cf2b1d4b154ee44a224c877f64d707, type: 3}
-      propertyPath: m_Offset.y
-      value: 0.327209
-      objectReference: {fileID: 0}
-    - target: {fileID: 6389828374775776717, guid: f9cf2b1d4b154ee44a224c877f64d707, type: 3}
-      propertyPath: m_ExcludeLayers.m_Bits
-      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 8315990684035554986, guid: f9cf2b1d4b154ee44a224c877f64d707, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3801,6 +3729,10 @@ PrefabInstance:
     - target: {fileID: 6221372109209525639, guid: e4cc3c2882da93244993f130ee523080, type: 3}
       propertyPath: JumpMultiplier
       value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 6221372109209525639, guid: e4cc3c2882da93244993f130ee523080, type: 3}
+      propertyPath: PlayerMaxFeathers
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 6221372109209525639, guid: e4cc3c2882da93244993f130ee523080, type: 3}
       propertyPath: PlayerAcceleration

@@ -148,14 +148,14 @@ MonoBehaviour:
   MinIdleTime: 1
   IdleBoxLimiterLeft: {fileID: 0}
   IdleBoxLimiterRight: {fileID: 0}
-  MovementSpeed: 1
-  AttackFrequency: 1
-  AttackRange: 0.2
+  MovementSpeed: 1.5
+  AttackFrequency: 3
+  AttackRange: 2
   AttackDamage: 5
   VisionColliderFront: {fileID: 3003513327783743349}
   VisionColliderBack: {fileID: 5096859956421923299}
   CanFly: 0
-  Debugging: 0
+  Debugging: 1
 --- !u!61 &9177677380967935594
 BoxCollider2D:
   m_ObjectHideFlags: 0

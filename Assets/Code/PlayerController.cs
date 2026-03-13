@@ -85,10 +85,13 @@ public class PlayerController : MonoBehaviour
         playerFeathers = new Feathers(PlayerMaxFeathers);
 
         MaskTimer = MaskingTime;
+
+        GM = GameObject.Find("GameManager").GetComponent<GameManager>();
     }
 
     void Update()
     {
+        Debug.Log(playerFeathers.currentFeathers.ToString() + " " + playerFeathers.maxFeathers.ToString());
         if (!EndingScreenShown) {
             if (playerSanity.currentSanity <= 0)
             {

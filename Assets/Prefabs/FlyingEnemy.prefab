@@ -150,7 +150,7 @@ MonoBehaviour:
   IdleBoxLimiterRight: {fileID: 0}
   MovementSpeed: 1
   AttackFrequency: 1
-  AttackRange: 0.2
+  AttackRange: 2
   AttackDamage: 5
   VisionColliderFront: {fileID: 5733322851474371728}
   VisionColliderBack: {fileID: 8720741114862174102}
@@ -172,7 +172,7 @@ BoxCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 8
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -190,7 +190,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0.3657937, y: 0.16003609}
+  m_Offset: {x: 0.3657937, y: 0.327209}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -200,7 +200,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 12.796859, y: 8.315882}
+  m_Size: {x: 12.796859, y: 8.650228}
   m_EdgeRadius: 0
 --- !u!61 &5733322851474371728
 BoxCollider2D:
@@ -236,7 +236,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -12.38687, y: -3.4766512}
+  m_Offset: {x: -15.774979, y: -6.393299}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -246,7 +246,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 24.835058, y: 17.169556}
+  m_Size: {x: 31.3497, y: 50.965805}
   m_EdgeRadius: 0
 --- !u!61 &8720741114862174102
 BoxCollider2D:
@@ -282,7 +282,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 14.698727, y: -3.4839025}
+  m_Offset: {x: 14.698727, y: -6.36549}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -292,7 +292,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 28.674202, y: 17.159279}
+  m_Size: {x: 28.674202, y: 50.77465}
   m_EdgeRadius: 0
 --- !u!50 &2346224452711411904
 Rigidbody2D:
